@@ -1,11 +1,31 @@
 export default (state, action) => {
 
    switch(action.type){
-      case "name":
+
+      case "HANDLE_CHANGE":
       return {
          ...state,
-         key: action.value
+         [action.label]: action.value
       }
+
+      case "IS_LOGGED_IN":
+      return {
+         ...state,
+         isLoggedIn: action.isLoggedIn
+      }
+      
+      case "LOGGED_IN_NAME":
+      return {
+         ...state,
+         name: action.name
+      }
+
+      case "SAVE_TOKEN":
+      return {
+         ...state,
+         token: action.token
+      }
+
       default:
       return state
    }

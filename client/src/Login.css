@@ -1,0 +1,15 @@
+.Login-main-container {
+   width: 50%;
+   margin: auto;
+   text-align: center;
+}
+
+.Login-input-container {
+   display: flex;
+}
+
+.Login-button-container {
+   display: flex;
+   justify-content: flex-start;
+   margin: 1rem 0 0 1rem;
+}
