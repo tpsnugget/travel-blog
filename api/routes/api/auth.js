@@ -18,12 +18,12 @@ router.post("/", async (req, res) => {
    try {
       // console.log("api/auth GET req.body ", req.body)
       const user = await User.findOne({ "email": req.body.email })
-      // console.log("user found in db: ", user)
-      if(bcrypt.compareSync(req.body.password, user.password)){
-         console.log("Passwords match!")
+      const { id, name, password } = user
+      if(bcrypt.compareSync(req.body.password, password)){
+         // console.log("Passwords match!")
          const payload = {
             user: {
-               id: user.id
+               id: id
             }
          }
    
@@ -33,8 +33,8 @@ router.post("/", async (req, res) => {
             {expiresIn: 3600},
             (err, token) => {
                if(err) throw err
-               console.log("token is: ", token)
-               res.json({token})
+               // console.log("token is: ", token)
+               res.json({name, token})
             })
       }
       else{

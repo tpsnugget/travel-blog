@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { store } from "./store"
-import { handleChange, saveToken } from "./actions"
+import { handleChange, isLoggedIn, loggedInName, saveToken } from "./actions"
 import { Button } from "./Atoms/Button/Button"
 import { InputText } from "./Atoms/InputText/InputText"
 import "./Login.css"
+
+var password = ""
 
 class Login extends Component {
 
@@ -11,12 +13,20 @@ class Login extends Component {
       store.dispatch(handleChange(e))
    }
 
+   handlePassword = (e) => {
+      password = e.target.value
+
+      console.log("password is: ", password)
+   }
+
    handleSubmit = (e) => {
       e.preventDefault()
 
+      const { email } = store.getState()
+
       const data = {
-         "email": "mikegiebner@gmail.com",
-         "password": "123456"
+         "email": email,
+         "password": password
       }
 
       fetch("http://localhost:9000/api/auth", {
@@ -33,16 +43,15 @@ class Login extends Component {
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
                store.dispatch(saveToken(res.token))
-               // store.dispatch(isLoggedIn(true))
-               // store.dispatch(loggedInName(res.name))
-               // store.dispatch(saveToken(res.token))
+               store.dispatch(loggedInName(res.name))
+               store.dispatch(isLoggedIn(true))
             }
          })
    }
 
    render() {
 
-      const { token } = store.getState()
+      const { name, token } = store.getState()
 
       return (
          <div className="Login-main-container">
@@ -61,7 +70,7 @@ class Login extends Component {
                      name="passwork"
                      placeholder="Password"
                      type="password"
-                     handleChange={this.handleChange}
+                     handleChange={this.handlePassword}
                   />
                </div>
                <div className="Login-button-container">
@@ -71,6 +80,7 @@ class Login extends Component {
                   />
                </div>
             </form>
+            {`The name is: ${name}`}
             {`The token is: ${token}`}
          </div>
       )
