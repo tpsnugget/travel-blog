@@ -1,0 +1,17 @@
+.Landing-main-container {
+   width: 50%;
+   margin: auto;
+}
+
+.Landing-button-container {
+   display: flex;
+   margin: 1rem 32px 0 0;
+}
+
+.Landing-button-div {
+   justify-content: flex-end;
+}
+
+.Landing-button {
+   justify-content: flex-end;
+}

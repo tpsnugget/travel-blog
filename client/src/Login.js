@@ -15,8 +15,6 @@ class Login extends Component {
 
    handlePassword = (e) => {
       password = e.target.value
-
-      console.log("password is: ", password)
    }
 
    handleSubmit = (e) => {
@@ -29,12 +27,10 @@ class Login extends Component {
          "password": password
       }
 
-      fetch("http://localhost:9000/api/auth", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json"
-         },
-         body: JSON.stringify(data)
+      const url = `http://localhost:9000/api/auth?email=${email}&password=${password}`
+
+      fetch(url, {
+         method: "GET"
       })
          .then(res => res.json())
          .then(res => {
@@ -55,7 +51,7 @@ class Login extends Component {
 
       return (
          <div className="Login-main-container">
-            <h1>Login is up Man!</h1>
+            <h1>Login</h1>
             <form onSubmit={this.handleSubmit}>
                <div className="Login-input-container">
                   <InputText

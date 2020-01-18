@@ -14,12 +14,11 @@ const saltRounds = config.get("saltRounds")
 // @route   GET api/auth
 // @desc    Test route
 // @access  Public access
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
    try {
-      // console.log("api/auth GET req.body ", req.body)
-      const user = await User.findOne({ "email": req.body.email })
+      const user = await User.findOne({ "email": req.query.email })
       const { id, name, password } = user
-      if(bcrypt.compareSync(req.body.password, password)){
+      if(bcrypt.compareSync(req.query.password, password)){
          // console.log("Passwords match!")
          const payload = {
             user: {

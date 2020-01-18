@@ -20,6 +20,12 @@ export default (state, action) => {
          name: action.name
       }
 
+      case "NEED_TO_SIGNUP":
+      return {
+         ...state,
+         needToSignup: action.needToSignup
+      }
+
       case "SAVE_TOKEN":
       return {
          ...state,
