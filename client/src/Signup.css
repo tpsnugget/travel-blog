@@ -1,0 +1,25 @@
+.Signup-main-container {
+   width: 90%;
+   margin: auto;
+   text-align: center;
+}
+
+.Signup-name-container {
+   display: flex;
+}
+
+.Signup-name {
+   display: flex;
+   justify-content: flex-start;
+   margin: 1rem 0 0 0;
+}
+
+.Signup-login-data {
+   display: flex;
+}
+
+.Signup-button-container {
+   display: flex;
+   justify-content: flex-start;
+   margin: 1rem 0 0 1rem;
+}

@@ -20,6 +20,13 @@ export function loggedInName(name){
    }
 }
 
+export function needToSignup(BOOL){
+   return {
+      type: "NEED_TO_SIGNUP",
+      needToSignup: BOOL
+   }
+}
+
 export function saveToken(token){
    return {
       type: "SAVE_TOKEN",

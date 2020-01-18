@@ -1,45 +1,46 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import { store } from "./store"
-import { isLoggedIn, loggedInName, saveToken } from "./actions"
+import { needToSignup } from "./actions"
+import Login from "./Login"
+import Signup from "./Signup"
+import { Button } from "./Atoms/Button/Button"
+import "./Landing.css"
 
 class Landing extends Component {
 
-   componentDidMount() {
-
-      const data = {
-         "name": "Mike Giebner",
-         "email": "mikegiebner@gmail.com",
-         "password": "123456"
-      }
-
-      fetch("http://localhost:9000/api/users", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json"
-         },
-         body: JSON.stringify(data)
-      })
-         .then(res => res.json())
-         .then(res => {
-            if (res.errors) {
-               console.log("There were", res.errors.length, "errors returned")
-               console.log("This error was returned from the server: ", res.errors[0].msg)
-            } else {
-               store.dispatch(isLoggedIn(true))
-               store.dispatch(loggedInName(res.name))
-               store.dispatch(saveToken(res.token))
-            }
-         })
+   handleClick = () => {
+      store.dispatch(needToSignup(true))
    }
 
    render() {
+      const { needToSignup } = store.getState()
 
-      const { isLoggedIn, name } = store.getState()
+      const notLoggedIn = (
+         <div>
+            <div
+               className="Landing-button-container"
+               onClick={this.handleClick}
+            >
+               <div className="Landing-button-div">
+                  <Button
+                     className="Landing-button"
+                     label="Sign Up"
+                  />
+               </div>
+            </div>
+            <Login />
+         </div>
+      )
+
+      const clickSignup = (
+         <div>
+            <Signup />
+         </div>
+      )
 
       return (
-         <div>
-            <h1>Landing is up Man!</h1>
-            {isLoggedIn ? <h2>{`${name} is Logged In!`}</h2> : <h2>Login Not Successful...</h2>}
+         <div className="Landing-main-container">
+            {needToSignup ? clickSignup : notLoggedIn}
          </div>
       )
    }
