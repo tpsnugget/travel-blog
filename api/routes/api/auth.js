@@ -9,8 +9,6 @@ const express = require("express"),
 
 const User = require("../../models/User")
 
-const saltRounds = config.get("saltRounds")
-
 // @route   GET api/auth
 // @desc    Test route
 // @access  Public access

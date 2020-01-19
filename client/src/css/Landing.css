@@ -1,17 +1,17 @@
 .Landing-main-container {
    width: 50%;
    margin: auto;
+   padding: 1rem 0;
 }
 
 .Landing-button-container {
+   width: 90%;
    display: flex;
-   margin: 1rem 32px 0 0;
+   margin: 1rem auto 0;
+   justify-content: flex-end;
 }
 
 .Landing-button-div {
-   justify-content: flex-end;
+   margin-right: 16px;
 }
 
-.Landing-button {
-   justify-content: flex-end;
-}

@@ -1,8 +1,22 @@
+export function addImage(e){
+   return {
+      type: "ADD_IMAGE",
+      images: e.target.value
+   }
+}
+
 export function handleChange(e){
    return {
       type: "HANDLE_CHANGE",
       label: e.target.name,
       value: e.target.value
+   }
+}
+
+export function handlePhoto(e){
+   return {
+      type: "HANDLE_PHOTO",
+      images: e.target.value
    }
 }
 

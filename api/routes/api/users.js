@@ -26,7 +26,6 @@ router.post("/", [
    }
 
    const { email, name, password } = req.body
-   console.log("email", email)
 
    try{
       let user = await User.findOne({email})
@@ -41,8 +40,7 @@ router.post("/", [
          d: "mm"
       })
 
-      var salt = await bcrypt.genSaltSync(10)
-      console.log("password going into hash: ", password)
+      var salt = await bcrypt.genSaltSync(saltRounds)
       var hash = await bcrypt.hashSync(password, salt)
 
       user = new User({

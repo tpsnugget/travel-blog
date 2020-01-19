@@ -1,0 +1,30 @@
+.New-main-container {
+   width: 90%;
+   margin: 1rem auto;
+}
+
+.New-header {
+   display: flex;
+   justify-content: space-around;
+   background-color: rgba(41, 69, 194, 0.25);
+   border-radius: 0.3rem;
+   border: 0.5px solid black;
+}
+
+.New-blog-container {
+   width: 100%;
+   display: flex;
+   margin: 2rem auto;
+   justify-content: flex-start;
+   background-color: rgba(41, 69, 194, 0.1);
+   border-radius: 0.3rem;
+   border: 0.5px solid black;
+}
+
+.New-form {
+   margin: 1rem;
+}
+
+.New-submit-button {
+   margin-top: 1rem;
+}

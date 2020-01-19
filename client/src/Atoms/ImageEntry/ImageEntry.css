@@ -1,0 +1,19 @@
+.ImageEntry-main-container {
+   display: flex;
+   width: 95%;
+   justify-content: space-between;
+   align-items: center;
+   margin: 1rem 0;
+   padding: 1rem;
+   border: 0.5px solid darkgray;
+   border-radius: 0.25rem;
+}
+
+.ImageEntry-image {
+   width: 80%;
+}
+
+.ImageEntry-image-div {
+   display: flex;
+   justify-content: flex-end;
+}
