@@ -23,3 +23,7 @@
    justify-content: flex-start;
    margin: 1rem 0 0 1rem;
 }
+
+.Signup-cancel-button {
+   margin-left: 2rem;
+}

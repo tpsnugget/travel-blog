@@ -2,10 +2,22 @@ export default (state, action) => {
 
    switch(action.type){
 
+      case "ADD_IMAGE":
+      return {
+         ...state,
+         images: [action.images]
+      }
+
       case "HANDLE_CHANGE":
       return {
          ...state,
          [action.label]: action.value
+      }
+
+      case "HANDLE_PHOTO":
+      return {
+         ...state,
+         images: [...state.images, action.images]
       }
 
       case "IS_LOGGED_IN":

@@ -1,9 +1,9 @@
 import React, { Component } from "react"
-import { store } from "./store"
-import { handleChange, isLoggedIn, loggedInName, saveToken } from "./actions"
-import { Button } from "./Atoms/Button/Button"
-import { InputText } from "./Atoms/InputText/InputText"
-import "./Login.css"
+import { store } from "../store"
+import { handleChange, isLoggedIn, loggedInName, needToSignup, saveToken } from "../actions"
+import { Button } from "../Atoms/Button/Button"
+import { InputText } from "../Atoms/InputText/InputText"
+import "../css/Login.css"
 
 var password = ""
 
@@ -22,11 +22,6 @@ class Login extends Component {
 
       const { email } = store.getState()
 
-      const data = {
-         "email": email,
-         "password": password
-      }
-
       const url = `http://localhost:9000/api/auth?email=${email}&password=${password}`
 
       fetch(url, {
@@ -41,13 +36,12 @@ class Login extends Component {
                store.dispatch(saveToken(res.token))
                store.dispatch(loggedInName(res.name))
                store.dispatch(isLoggedIn(true))
+               store.dispatch(needToSignup(false))
             }
          })
    }
 
    render() {
-
-      const { name, token } = store.getState()
 
       return (
          <div className="Login-main-container">
@@ -76,8 +70,6 @@ class Login extends Component {
                   />
                </div>
             </form>
-            {`The name is: ${name}`}
-            {`The token is: ${token}`}
          </div>
       )
    }

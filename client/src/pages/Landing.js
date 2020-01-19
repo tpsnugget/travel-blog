@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { store } from "./store"
-import { needToSignup } from "./actions"
-import Login from "./Login"
-import Signup from "./Signup"
-import { Button } from "./Atoms/Button/Button"
-import "./Landing.css"
+import { store } from "../store"
+import { needToSignup } from "../actions"
+import Login from "../pages/Login"
+import Signup from "../pages/Signup"
+import { Button } from "../Atoms/Button/Button"
+import "../css/Landing.css"
 
 class Landing extends Component {
 

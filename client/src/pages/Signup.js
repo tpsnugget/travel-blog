@@ -1,10 +1,9 @@
 import React, { Component } from "react"
-import { store } from "./store"
-import { handleChange } from "./actions"
-// import { isLoggedIn, loggedInName } from "./actions"
-import { Button } from "./Atoms/Button/Button"
-import { InputText } from "./Atoms/InputText/InputText"
-import "./Signup.css"
+import { store } from "../store"
+import { handleChange, needToSignup } from "../actions"
+import { Button } from "../Atoms/Button/Button"
+import { InputText } from "../Atoms/InputText/InputText"
+import "../css/Signup.css"
 
 var password = ""
 
@@ -43,6 +42,10 @@ class Signup extends Component {
          })
    }
 
+   handleCancel = () => {
+      store.dispatch(needToSignup(false))
+   }
+
    handleChange = (e) => {
       store.dispatch(handleChange(e))
    }
@@ -52,8 +55,6 @@ class Signup extends Component {
    }
 
    render() {
-
-      const { name, token } = store.getState()
 
       return (
          <div className="Signup-main-container">
@@ -93,6 +94,14 @@ class Signup extends Component {
                      className="Signup-submit-button"
                      label="Submit"
                   />
+                  <div
+                     className="Signup-cancel-button"
+                     onClick={this.handleCancel}
+                  >
+                     <Button
+                        label="Cancel"
+                     />
+                  </div>
                </div>
             </form>
          </div>
