@@ -1,7 +1,10 @@
 .Landing-main-container {
    width: 50%;
-   margin: auto;
+   margin: 2rem auto;
    padding: 1rem 0;
+   background-color: rgba(179, 10, 10, 0.733);
+   border-radius: 0.5rem;
+   border: 0.5px solid darkgray;
 }
 
 .Landing-button-container {

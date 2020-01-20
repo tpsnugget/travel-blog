@@ -1,0 +1,14 @@
+.ImageThumbnail-main-container {
+   display: flex;
+   width: 95%;
+   justify-content: space-between;
+   align-items: ceThumbnail
+}
+
+.ImageThumbnail-image-div {
+   justify-content: space-between;
+}
+
+.ImageThumbnail-image {
+   width: 200px;
+}

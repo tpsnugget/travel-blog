@@ -4,6 +4,7 @@ import { handleChange, handlePhoto } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
 import ImageEntry from "../Atoms/ImageEntry/ImageEntry"
+import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
 import { InputTextTripleLength } from "../Atoms/InputTextTripleLength/InputTextTripleLength"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import "../css/New.css"
@@ -12,7 +13,9 @@ class New extends Component {
 
    handlePhoto = (e) => {
       e.preventDefault()
-      store.dispatch(handlePhoto(e))
+      const { image } = store.getState()
+      // console.log("New Component image", image)
+      store.dispatch(handlePhoto(image))
    }
 
    handleChange = (e) => {
@@ -25,14 +28,10 @@ class New extends Component {
 
       var imagesToDisplay = []
 
-      if(images.length > 0){
-         imagesToDisplay = images.map( (image) => 
-         <ImageEntry key={image} image={image} />
-      )
-      }
-      else {
-         imagesToDisplay = 
-         <ImageEntry />
+      if (images.length > 0) {
+         imagesToDisplay = images.map((image) =>
+            <ImageThumbnail key={image} image={image} />
+         )
       }
 
       return (
@@ -50,7 +49,7 @@ class New extends Component {
                         label="Title"
                         name="title"
                         placeholder="Title"
-                        handleChange={this.handlePhoto}
+                        handleChange={this.handleChange}
                      />
                      <TextArea
                         rows="10"
@@ -60,9 +59,13 @@ class New extends Component {
                         placeholder="New Blog Text"
                         handleChange={this.handleChange}
                      />
-                     {imagesToDisplay}
+                     <ImageEntry handleChange={this.handleChange} />
+                     <div className="New-imagethumbnail">
+                        {imagesToDisplay}
+                     </div>
                      <div
                         className="New-add-button"
+                        onClick={this.handlePhoto}
                      >
                         <Button label="Add Photo" />
                      </div>
