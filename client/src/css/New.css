@@ -28,3 +28,7 @@
 .New-submit-button {
    margin-top: 1rem;
 }
+
+.New-imagethumbnail {
+   display: flex;
+}

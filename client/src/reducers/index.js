@@ -15,9 +15,11 @@ export default (state, action) => {
       }
 
       case "HANDLE_PHOTO":
+      // console.log("reducer action.image is ", action.image)
       return {
          ...state,
-         images: [...state.images, action.images]
+         images: [...state.images, action.image],
+         image: ""
       }
 
       case "IS_LOGGED_IN":

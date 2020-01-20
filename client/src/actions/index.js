@@ -13,10 +13,11 @@ export function handleChange(e){
    }
 }
 
-export function handlePhoto(e){
+export function handlePhoto(image){
+   // console.log("action creator image is ", image)
    return {
       type: "HANDLE_PHOTO",
-      images: e.target.value
+      image: image
    }
 }
 
