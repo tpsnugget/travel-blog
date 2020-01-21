@@ -21,6 +21,20 @@ export function handlePhoto(image){
    }
 }
 
+export function hasProfile(BOOL){
+   return {
+      type: "HAS_PROFILE",
+      hasProfile: BOOL
+   }
+}
+
+export function id(id){
+   return {
+      type: "ID",
+      id: id
+   }
+}
+
 export function isLoggedIn(BOOL){
    return {
       type: "IS_LOGGED_IN",

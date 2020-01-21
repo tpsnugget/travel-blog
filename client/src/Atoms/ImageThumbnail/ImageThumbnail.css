@@ -11,4 +11,5 @@
 
 .ImageThumbnail-image {
    width: 200px;
+   border-radius: 0.35rem;
 }

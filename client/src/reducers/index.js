@@ -22,6 +22,18 @@ export default (state, action) => {
          image: ""
       }
 
+      case "HAS_PROFILE":
+      return {
+         ...state,
+         hasProfile: action.hasProfile
+      }
+
+      case "ID":
+      return {
+         ...state,
+         id: action.id
+      }
+
       case "IS_LOGGED_IN":
       return {
          ...state,

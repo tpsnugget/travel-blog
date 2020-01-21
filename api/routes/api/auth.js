@@ -15,7 +15,7 @@ const User = require("../../models/User")
 router.get("/", async (req, res) => {
    try {
       const user = await User.findOne({ "email": req.query.email })
-      const { id, name, password } = user
+      const { hasProfile, id, name, password } = user
       if(bcrypt.compareSync(req.query.password, password)){
          // console.log("Passwords match!")
          const payload = {
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
             (err, token) => {
                if(err) throw err
                // console.log("token is: ", token)
-               res.json({name, token})
+               res.json({ hasProfile, id, name, token })
             })
       }
       else{
