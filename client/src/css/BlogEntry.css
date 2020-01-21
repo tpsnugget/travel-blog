@@ -1,4 +1,5 @@
 .BlogEntry-main-container {
    width: 90%;
    margin: auto;
+   border: 0.25px solid lightgray;
 }

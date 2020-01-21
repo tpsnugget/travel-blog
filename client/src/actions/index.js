@@ -56,6 +56,13 @@ export function needToSignup(BOOL){
    }
 }
 
+export function saveBlogs(blogs){
+   return {
+      type: "SAVE_BLOGS",
+      blogs: blogs
+   }
+}
+
 export function saveToken(token){
    return {
       type: "SAVE_TOKEN",
