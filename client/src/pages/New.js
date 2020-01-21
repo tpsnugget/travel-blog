@@ -60,14 +60,14 @@ class New extends Component {
                         handleChange={this.handleChange}
                      />
                      <ImageEntry handleChange={this.handleChange} />
-                     <div className="New-imagethumbnail">
-                        {imagesToDisplay}
-                     </div>
                      <div
                         className="New-add-button"
                         onClick={this.handlePhoto}
                      >
                         <Button label="Add Photo" />
+                     </div>
+                     <div className="New-imagethumbnail">
+                        {imagesToDisplay}
                      </div>
                      <div className="New-submit-button">
                         <Button label="Submit" />

@@ -31,4 +31,5 @@
 
 .New-imagethumbnail {
    display: flex;
+   margin-top: 1rem;
 }

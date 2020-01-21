@@ -19,9 +19,9 @@ class Signup extends Component {
          "password": password
       }
 
-      console.log("email", email)
-      console.log("name", name)
-      console.log("password", password)
+      // console.log("email", email)
+      // console.log("name", name)
+      // console.log("password", password)
 
       fetch("http://localhost:9000/api/users", {
          method: "POST",

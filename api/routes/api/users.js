@@ -72,4 +72,18 @@ router.post("/", [
    }
 })
 
+router.put("/", async (req, res) => {
+
+   const { id } = req.body
+
+   console.log("api/user req.body.id is ", id)
+
+   const userToUpdate = await User.findById({_id: id})
+   userToUpdate.hasProfile = true
+   await userToUpdate.save()
+
+
+   res.send("User POST Route is up Man!")
+})
+
 module.exports = router

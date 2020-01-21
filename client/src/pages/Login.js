@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { store } from "../store"
-import { handleChange, isLoggedIn, loggedInName, needToSignup, saveToken } from "../actions"
+import { handleChange, hasProfile, id, isLoggedIn, loggedInName, needToSignup, saveToken } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { InputText } from "../Atoms/InputText/InputText"
 import "../css/Login.css"
@@ -33,8 +33,11 @@ class Login extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
+               // console.log("Login Component res is ", res)
                store.dispatch(saveToken(res.token))
                store.dispatch(loggedInName(res.name))
+               store.dispatch(hasProfile(res.hasProfile))
+               store.dispatch(id(res.id))
                store.dispatch(isLoggedIn(true))
                store.dispatch(needToSignup(false))
             }
