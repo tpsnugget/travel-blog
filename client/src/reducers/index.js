@@ -52,6 +52,12 @@ export default (state, action) => {
          needToSignup: action.needToSignup
       }
 
+      case "SAVE_BLOGS":
+      return {
+         ...state,
+         blogs: action.blogs
+      }
+
       case "SAVE_TOKEN":
       return {
          ...state,

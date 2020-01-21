@@ -4,6 +4,7 @@ import reducer from "../reducers"
 const initialState = {
    bio: "",
    blogId: "",
+   blogs: [],
    email: "",
    hasProfile: true,
    id: "",

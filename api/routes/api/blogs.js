@@ -6,6 +6,16 @@ const express = require("express"),
 // @route   GET api/blogs
 // @desc    Test route
 // @access  Public access
+router.get("/", async (req, res) => {
+   console.log("Blog GET route")
+
+   const blogs = await Blog.find()
+
+   console.log("blogs are ", blogs)
+
+   res.send(blogs)
+})
+
 router.post("/", async (req, res) => {
    console.log("Blog POST route req.body is ", req.body)
 
