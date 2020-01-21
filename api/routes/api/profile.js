@@ -7,7 +7,7 @@ const express = require("express"),
 // @route   GET api/profile
 // @desc    Test route
 // @access  Public access
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
 
    const { bio, location, id } = req.body
 

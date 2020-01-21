@@ -22,6 +22,32 @@ class New extends Component {
       store.dispatch(handleChange(e))
    }
 
+   handleSubmit = (e) => {
+      e.preventDefault()
+
+      const { id, images, text, title } = store.getState()
+
+      console.log("New Blog Component, images, text, title are ", images, text, title)
+
+      fetch("http://localhost:9000/api/blogs", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({ addedBy: id, images: images, text: text, title: title })
+      })
+         .then(res => res.json())
+         .then(res => {
+            if (res.errors) {
+               console.log("There were", res.errors.length, "errors returned")
+               console.log("This error was returned from the server: ", res.errors[0].msg)
+            } else {
+               // store.dispatch(isLoggedIn(true))
+               // store.dispatch(loggedInName(res.name))
+            }
+         })
+   }
+
    render() {
 
       const { images } = store.getState()
@@ -43,7 +69,10 @@ class New extends Component {
             </div>
 
             <div className="New-blog-container">
-               <form className="New-form">
+               <form
+                  className="New-form"
+                  onSubmit={this.handleSubmit}
+               >
                   <div className="New-submit-button-div">
                      <InputTextTripleLength
                         label="Title"
