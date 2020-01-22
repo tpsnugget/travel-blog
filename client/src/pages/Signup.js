@@ -11,16 +11,16 @@ class Signup extends Component {
 
    handleSubmit = () => {
 
-      const { email, name } = store.getState()
+      const { email, username } = store.getState()
 
       const data = {
-         "name": name,
+         "username": username,
          "email": email,
          "password": password
       }
 
       // console.log("email", email)
-      // console.log("name", name)
+      // console.log("username", username)
       // console.log("password", password)
 
       fetch("http://localhost:9000/api/users", {
@@ -65,7 +65,7 @@ class Signup extends Component {
                      <div className="Signup-name">
                         <InputText
                            label="Name"
-                           name="name"
+                           name="username"
                            placeholder="Name"
                            type="text"
                            handleChange={this.handleChange}
@@ -82,7 +82,7 @@ class Signup extends Component {
                      />
                      <InputText
                         label="Password"
-                        name="passwork"
+                        name="password"
                         placeholder="Password"
                         type="password"
                         handleChange={this.handlePassword}

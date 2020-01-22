@@ -15,9 +15,11 @@ class Profile extends Component {
    handleSubmit = (e) => {
       e.preventDefault()
 
-      const { bio, id, location } = store.getState()
+      const { bio, id, location, token } = store.getState()
 
       // console.log("Profile Component handleSubmit is running...calling fetch on api/user with PUT")
+      // console.log("Profile Component bio, id, location are: ", bio, id, location)
+      // console.log("Profile Component token is ", token)
 
       fetch("http://localhost:9000/api/users", {
          method: "PUT",
@@ -40,7 +42,8 @@ class Profile extends Component {
       fetch("http://localhost:9000/api/profile", {
          method: "POST",
          headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": token
          },
          body: JSON.stringify({ bio: bio, location: location, id: id })
       })
@@ -94,6 +97,3 @@ class Profile extends Component {
 }
 
 export default Profile
-
-// Create a profile
-// Update user in db so hasProfile is true

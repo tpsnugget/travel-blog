@@ -7,30 +7,45 @@ const express = require("express"),
 // @desc    Test route
 // @access  Public access
 router.get("/", async (req, res) => {
-   console.log("Blog GET route")
+   // console.log("Blog GET route")
 
    const blogs = await Blog.find()
 
-   console.log("blogs are ", blogs)
+   // console.log("blogs are ", blogs)
+
+   res.send(blogs)
+})
+
+router.get("/show/:id", async (req, res) => {
+   // console.log("Blog GET One route req.params ", req.params)
+
+   const blogs = await Blog.findById(req.params.id)
+
+   // console.log("blogs are ", blogs)
 
    res.send(blogs)
 })
 
 router.post("/", async (req, res) => {
-   console.log("Blog POST route req.body is ", req.body)
+   // console.log("Blog POST route req.body is ", req.body)
 
    const { addedBy, images, text, title } = req.body
 
-   const blog = new Blog({
+   // console.log("NewBlog POST req.body is ", req.body)
+
+   const blog = await new Blog({
       addedBy,
       images,
       text,
       title
    })
 
-   await blog.save()
+   // console.log("api POST blog from await new Blog is ", blog)
 
-   res.send("Post GET Route is up Man!")
+   const newBlog = await blog.save()
+   // console.log("api POST NewBlog answer from DB is ", newBlog)
+
+   res.json(newBlog)
 })
 
 module.exports = router

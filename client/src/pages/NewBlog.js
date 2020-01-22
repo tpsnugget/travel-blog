@@ -1,15 +1,15 @@
 import React, { Component } from "react"
 import { store } from "../store"
-import { handleChange, handlePhoto } from "../actions"
+import { handleChange, handlePhoto, newBlogAdded } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
 import ImageEntry from "../Atoms/ImageEntry/ImageEntry"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
 import { InputTextTripleLength } from "../Atoms/InputTextTripleLength/InputTextTripleLength"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
-import "../css/New.css"
+import "../css/NewBlog.css"
 
-class New extends Component {
+class NewBlog extends Component {
 
    handlePhoto = (e) => {
       e.preventDefault()
@@ -27,22 +27,26 @@ class New extends Component {
 
       const { id, images, text, title } = store.getState()
 
-      console.log("New Blog Component, images, text, title are ", images, text, title)
+      // console.log("New Blog Component, images, text, title are ", images, text, title)
 
       fetch("http://localhost:9000/api/blogs", {
          method: "POST",
          headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json"
          },
          body: JSON.stringify({ addedBy: id, images: images, text: text, title: title })
       })
-         .then(res => res.json())
+         .then(res => res.text())
+         // .then(text => console.log(text))
          .then(res => {
             if (res.errors) {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
-               // store.dispatch(isLoggedIn(true))
+               store.dispatch(newBlogAdded())
+               // var { images } = store.getState()
+               // console.log("NewBlog Components, images should be [] but are ", images)
                // store.dispatch(loggedInName(res.name))
             }
          })
@@ -109,4 +113,4 @@ class New extends Component {
    }
 }
 
-export default New
+export default NewBlog

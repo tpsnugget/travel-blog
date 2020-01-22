@@ -14,7 +14,7 @@ const saltRounds = config.get("saltRounds")
 // @desc    Test route
 // @access  Public access
 router.post("/", [
-   check("name", "Name is required").not().isEmpty(),
+   check("username", "Name is required").not().isEmpty(),
    check("email", "Please include a valid email").isEmail(),
    check("password", "Please include a password with 6 or more characters").isLength({
       min: 6
@@ -25,10 +25,14 @@ router.post("/", [
       return res.status(422).json({errors: errors.array()})
    }
 
-   const { email, name, password } = req.body
+   const { email, username, password } = req.body
+   console.log("api users POST route user is ", req.body)
 
    try{
       let user = await User.findOne({email})
+
+      console.log("api users POST route TRY Block is up Man!")
+      console.log("api users POST route user will be false if user does not exist ", user)
 
       if(user){
          return res.status(400).json({ errors: [{ msg: "User already exists" }] })
@@ -47,10 +51,11 @@ router.post("/", [
          avatar,
          email,
          password: hash,
-         name
+         username
       })
 
-      await user.save()
+      const newUser = await user.save()
+      console.log("api users POST newUser = await user.save() is ", newUser)
 
       const payload = {
          user: {
@@ -64,7 +69,8 @@ router.post("/", [
          {expiresIn: 3600},
          (err, token) => {
             if(err) throw err
-            res.json({token, name})
+            console.log("api user POST route token and username are ", token, username)
+            res.json({token, username})
          })
    } catch(err){
       console.error(err.message)
@@ -76,14 +82,14 @@ router.put("/", async (req, res) => {
 
    const { id } = req.body
 
-   console.log("api/user req.body.id is ", id)
+   // console.log("api/user req.body.id is ", id)
 
    const userToUpdate = await User.findById({_id: id})
    userToUpdate.hasProfile = true
-   await userToUpdate.save()
+   const updatedUser = await userToUpdate.save()
 
 
-   res.send("User POST Route is up Man!")
+   res.json(updatedUser)
 })
 
 module.exports = router

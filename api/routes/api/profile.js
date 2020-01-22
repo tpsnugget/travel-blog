@@ -11,7 +11,7 @@ router.post("/", auth, async (req, res) => {
 
    const { bio, location, id } = req.body
 
-   console.log("api/profile req.body.id is ", id)
+   // console.log("api/profile req body, location and id are ", bio, location, id)
 
    profile = new Profile({
       bio,

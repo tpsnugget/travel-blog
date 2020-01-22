@@ -42,10 +42,10 @@ export function isLoggedIn(BOOL){
    }
 }
 
-export function loggedInName(name){
+export function loggedInUsername(username){
    return {
-      type: "LOGGED_IN_NAME",
-      name: name
+      type: "LOGGED_IN_USERNAME",
+      username: username
    }
 }
 
@@ -53,6 +53,26 @@ export function needToSignup(BOOL){
    return {
       type: "NEED_TO_SIGNUP",
       needToSignup: BOOL
+   }
+}
+
+export function newBlogAdded(){
+   return {
+      type: "NEW_BLOG_ADDED"
+   }
+}
+
+export function saveBlogId(id){
+   return {
+      type: "SAVE_BLOG_ID",
+      blogId: id
+   }
+}
+
+export function saveABlog(blog){
+   return {
+      type: "SAVE_A_BLOG",
+      blog: blog
    }
 }
 
