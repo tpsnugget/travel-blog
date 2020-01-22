@@ -27,8 +27,8 @@ class Mininavbar extends Component {
       // const editPath = `/${name.toLowerCase()}/edit`
 
       // const { allowedToModifySelection } = store.getState()
-      const { blogId, name } = store.getState()
-      const add = (name === "Mike Giebner" || name === "Shari Tonks")
+      const { blogId, username } = store.getState()
+      const add = (username === "Mike Giebner" || username === "Shari Tonks")
       const edit = (blogId !== "")
       const chosenId = ""
 

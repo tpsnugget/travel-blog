@@ -1,7 +1,6 @@
 const express = require("express"),
    router = express.Router(),
    gravatar = require("gravatar"),
-   { check, validationResult } = require("express-validator"),
    bcrypt = require("bcryptjs"),
    jwt = require("jsonwebtoken"),
    config = require("config"),
@@ -15,7 +14,8 @@ const User = require("../../models/User")
 router.get("/", async (req, res) => {
    try {
       const user = await User.findOne({ "email": req.query.email })
-      const { hasProfile, id, name, password } = user
+      const { hasProfile, id, username, password } = user
+      // console.log("api auth route hasProfile, id, username, password ", hasProfile, id, username, password)
       if(bcrypt.compareSync(req.query.password, password)){
          // console.log("Passwords match!")
          const payload = {
@@ -30,8 +30,9 @@ router.get("/", async (req, res) => {
             {expiresIn: 3600},
             (err, token) => {
                if(err) throw err
-               // console.log("token is: ", token)
-               res.json({ hasProfile, id, name, token })
+               // console.log("api auth route JWT hasProfile, id, username, password ", hasProfile, id, username, password)
+               // console.log("api auth route JWT token ", token)
+               res.json({ hasProfile, id, username, token })
             })
       }
       else{

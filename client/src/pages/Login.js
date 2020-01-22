@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { store } from "../store"
-import { handleChange, hasProfile, id, isLoggedIn, loggedInName, needToSignup, saveToken } from "../actions"
+import { handleChange, hasProfile, id, isLoggedIn, loggedInUsername, needToSignup, saveToken } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { InputText } from "../Atoms/InputText/InputText"
 import "../css/Login.css"
@@ -35,7 +35,7 @@ class Login extends Component {
             } else {
                // console.log("Login Component res is ", res)
                store.dispatch(saveToken(res.token))
-               store.dispatch(loggedInName(res.name))
+               store.dispatch(loggedInUsername(res.username))
                store.dispatch(hasProfile(res.hasProfile))
                store.dispatch(id(res.id))
                store.dispatch(isLoggedIn(true))
@@ -60,7 +60,7 @@ class Login extends Component {
                   />
                   <InputText
                      label="Password"
-                     name="passwork"
+                     name="password"
                      placeholder="Password"
                      type="password"
                      handleChange={this.handlePassword}

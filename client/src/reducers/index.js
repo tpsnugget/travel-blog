@@ -40,16 +40,38 @@ export default (state, action) => {
          isLoggedIn: action.isLoggedIn
       }
       
-      case "LOGGED_IN_NAME":
+      case "LOGGED_IN_USERNAME":
       return {
          ...state,
-         name: action.name
+         username: action.username
+      }
+
+      case "NEW_BLOG_ADDED":
+      // console.log("Reducer NEW_BLOG_ADDED is running...")
+      return {
+         ...state,
+         image: "",
+         images: [],
+         text: "",
+         title: ""
       }
 
       case "NEED_TO_SIGNUP":
       return {
          ...state,
          needToSignup: action.needToSignup
+      }
+
+      case "SAVE_BLOG_ID":
+      return {
+         ...state,
+         blogId: action.blogId
+      }
+
+      case "SAVE_A_BLOG":
+      return {
+         ...state,
+         blog: action.blog
       }
 
       case "SAVE_BLOGS":
