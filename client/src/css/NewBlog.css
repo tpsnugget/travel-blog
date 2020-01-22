@@ -1,9 +1,9 @@
-.New-main-container {
+.NewBlog-main-container {
    width: 90%;
    margin: 1rem auto;
 }
 
-.New-header {
+.NewBlog-header {
    display: flex;
    justify-content: space-around;
    background-color: rgba(41, 69, 194, 0.25);
@@ -11,7 +11,7 @@
    border: 0.5px solid black;
 }
 
-.New-blog-container {
+.NewBlog-blog-container {
    width: 100%;
    display: flex;
    margin: 2rem auto;
@@ -21,15 +21,15 @@
    border: 0.5px solid black;
 }
 
-.New-form {
+.NewBlog-form {
    margin: 1rem;
 }
 
-.New-submit-button {
+.NewBlog-submit-button {
    margin-top: 1rem;
 }
 
-.New-imagethumbnail {
+.NewBlog-imagethumbnail {
    display: flex;
    margin-top: 1rem;
 }

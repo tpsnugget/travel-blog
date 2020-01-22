@@ -47,11 +47,12 @@ export default (state, action) => {
       }
 
       case "NEW_BLOG_ADDED":
-      // console.log("Reducer NEW_BLOG_ADDED is running...")
+      console.log("Reducer NEW_BLOG_ADDED is running...")
       return {
          ...state,
          image: "",
          images: [],
+         newBlogAdded: true,
          text: "",
          title: ""
       }

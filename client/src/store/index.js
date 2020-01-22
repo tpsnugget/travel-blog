@@ -2,6 +2,8 @@ import { createStore } from "redux"
 import reducer from "../reducers"
 
 const initialState = {
+   addedById: "",
+   addedByUsername: "",
    bio: "",
    blogId: "",
    blog: {},
@@ -15,6 +17,7 @@ const initialState = {
    location: "",
    username: "",
    needToSignup: false,
+   newBlogAdded: false,
    text: "",
    title: "",
    token: ""

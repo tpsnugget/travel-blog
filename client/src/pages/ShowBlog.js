@@ -46,7 +46,7 @@ class ShowBlog extends Component {
    render() {
 
       const { blog, name } = store.getState()
-      var { _id, addedBy, date, images, text, title } = blog
+      var { _id, addedById, addedByUsername, date, images, text, title } = blog
 
       if (!images) { images = [] }
 
@@ -80,7 +80,7 @@ class ShowBlog extends Component {
                   </div>
                   <div className="ShowBlog-addedby-date">
                      <div className="ShowBlog-bottom-container">
-                        <strong>Added By:</strong>{"  "}{name}
+                        <strong>Added By:</strong>{"  "}{addedByUsername}
                      </div>
                      <div className="ShowBlog-bottom-container">
                         <strong>on:</strong>{"  "}{date}

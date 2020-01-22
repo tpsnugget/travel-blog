@@ -19,6 +19,9 @@ function App() {
           {isLoggedIn && hasProfile && <MainBlogPage />}
           {!isLoggedIn && <Landing />}
         </Route>
+        <Route exact path="/blog/main">
+          <MainBlogPage />
+        </Route>
         <Route exact path="/blog/new">
           <NewBlog />
         </Route>
