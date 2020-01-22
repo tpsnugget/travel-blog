@@ -31,8 +31,8 @@ class Mininavbar extends Component {
       const { addedById } = blog
       const add = (username === "Mike Giebner" || username === "Shari Tonks")
       const edit = (addedById === id)
-      console.log("Mininavbar Component addedById is ", addedById)
-      console.log("Mininavbar Component id is ", id)
+      // console.log("Mininavbar Component addedById is ", addedById)
+      // console.log("Mininavbar Component id is ", id)
       const chosenId = ""
 
       return (
