@@ -29,12 +29,13 @@ router.get("/show/:id", async (req, res) => {
 router.post("/", async (req, res) => {
    // console.log("Blog POST route req.body is ", req.body)
 
-   const { addedBy, images, text, title } = req.body
+   const { addedById, addedByUsername, images, text, title } = req.body
 
    // console.log("NewBlog POST req.body is ", req.body)
 
    const blog = await new Blog({
-      addedBy,
+      addedById,
+      addedByUsername,
       images,
       text,
       title

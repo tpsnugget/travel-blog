@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router-dom"
 import { store } from "../store"
 import { handleChange, handlePhoto, newBlogAdded } from "../actions"
 import { Button } from "../Atoms/Button/Button"
@@ -14,7 +15,7 @@ class NewBlog extends Component {
    handlePhoto = (e) => {
       e.preventDefault()
       const { image } = store.getState()
-      // console.log("New Component image", image)
+      // console.log("NewBlog Component image", image)
       store.dispatch(handlePhoto(image))
    }
 
@@ -25,7 +26,7 @@ class NewBlog extends Component {
    handleSubmit = (e) => {
       e.preventDefault()
 
-      const { id, images, text, title } = store.getState()
+      const { id, images, text, title, username } = store.getState()
 
       // console.log("New Blog Component, images, text, title are ", images, text, title)
 
@@ -35,7 +36,7 @@ class NewBlog extends Component {
             "Content-Type": "application/json",
             "Accept": "application/json"
          },
-         body: JSON.stringify({ addedBy: id, images: images, text: text, title: title })
+         body: JSON.stringify({ addedById: id, addedByUsername: username, images: images, text: text, title: title })
       })
          .then(res => res.text())
          // .then(text => console.log(text))
@@ -54,7 +55,7 @@ class NewBlog extends Component {
 
    render() {
 
-      const { images } = store.getState()
+      const { images, newBlogAdded } = store.getState()
 
       var imagesToDisplay = []
 
@@ -65,19 +66,20 @@ class NewBlog extends Component {
       }
 
       return (
-         <div className="New-main-container">
+         <div className="NewBlog-main-container">
 
-            <div className="New-header">
+            <div className="NewBlog-header">
                <h1>New Blog</h1>
                <span><LinkButton name="Cancel" newPath={"/"} /></span>
             </div>
 
-            <div className="New-blog-container">
+            <div className="NewBlog-blog-container">
+            {newBlogAdded && <Redirect to="/blog/main"/>}
                <form
-                  className="New-form"
+                  className="NewBlog-form"
                   onSubmit={this.handleSubmit}
                >
-                  <div className="New-submit-button-div">
+                  <div className="NewBlog-submit-button-div">
                      <InputTextTripleLength
                         label="Title"
                         name="title"
@@ -94,15 +96,15 @@ class NewBlog extends Component {
                      />
                      <ImageEntry handleChange={this.handleChange} />
                      <div
-                        className="New-add-button"
+                        className="NewBlog-add-button"
                         onClick={this.handlePhoto}
                      >
                         <Button label="Add Photo" />
                      </div>
-                     <div className="New-imagethumbnail">
+                     <div className="NewBlog-imagethumbnail">
                         {imagesToDisplay}
                      </div>
-                     <div className="New-submit-button">
+                     <div className="NewBlog-submit-button">
                         <Button label="Submit" />
                      </div>
                   </div>
