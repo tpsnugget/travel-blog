@@ -21,6 +21,10 @@ router.get("/show/:id", async (req, res) => {
 
    const blogs = await Blog.findById(req.params.id)
 
+   // var { date } = blogs
+   // Date.format(date, "ddd, MMM DD YYYY", true)
+   // console.log("api GET One Blog date is ", date)
+
    // console.log("blogs are ", blogs)
 
    res.send(blogs)

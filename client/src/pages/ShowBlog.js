@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Moment from "react-moment"
 import { store } from "../store"
 import { handleChange, handlePhoto, saveABlog } from "../actions"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
@@ -46,8 +47,8 @@ class ShowBlog extends Component {
 
    render() {
 
-      const { blog, name } = store.getState()
-      var { _id, addedById, addedByUsername, date, images, text, title } = blog
+      const { blog } = store.getState()
+      var { addedByUsername, date, images, text, title } = blog
 
       if (!images) { images = [] }
 
@@ -58,6 +59,12 @@ class ShowBlog extends Component {
             <ImageThumbnail key={image} image={image} />
          )
       }
+
+      // const newDate = Date.parse(date, "ddd, MMM DD YYYY", true)
+      // date.format(date, 'ddd, MMM DD YYYY')
+
+      console.log("ShowBlog Component date is ", date)
+      console.log("ShowBlog Component date typeof is ", typeof(date))
 
       return (
          <div className="ShowBlog-main-container">
@@ -85,7 +92,10 @@ class ShowBlog extends Component {
                         <strong>Added By:</strong>{"  "}{addedByUsername}
                      </div>
                      <div className="ShowBlog-bottom-container">
-                        <strong>on:</strong>{"  "}{date}
+                        <strong>on:</strong>{"  "}
+                        <Moment format="DD MMM, YYYY at HH:MM a">
+                           {date}
+                        </Moment>
 
                      </div>
                   </div>
