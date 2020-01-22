@@ -3,6 +3,7 @@ import { store } from "../store"
 import { handleChange, handlePhoto, saveABlog } from "../actions"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
+import Mininavbar from "../pages/Mininavbar"
 import "../css/ShowBlog.css"
 
 class ShowBlog extends Component {
@@ -69,6 +70,7 @@ class ShowBlog extends Component {
             <div className="ShowBlog-blog-container">
 
                <div className="ShowBlog-div">
+               <Mininavbar />
                   <div>
                      <h2>{title}</h2>
                   </div>
