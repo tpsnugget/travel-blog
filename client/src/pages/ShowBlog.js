@@ -60,18 +60,12 @@ class ShowBlog extends Component {
          )
       }
 
-      // const newDate = Date.parse(date, "ddd, MMM DD YYYY", true)
-      // date.format(date, 'ddd, MMM DD YYYY')
-
-      console.log("ShowBlog Component date is ", date)
-      console.log("ShowBlog Component date typeof is ", typeof(date))
-
       return (
          <div className="ShowBlog-main-container">
 
             <div className="ShowBlog-header">
                <h1>{title}</h1>
-               <span><LinkButton name="Cancel" newPath={"/"} /></span>
+               <span><LinkButton name="Cancel" newPath={"/blog/main"} /></span>
             </div>
 
             <div className="ShowBlog-blog-container">

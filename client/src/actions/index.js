@@ -5,6 +5,13 @@ export function addImage(e){
    }
 }
 
+export function goodDelete(BOOL){
+   return {
+      type: "GOOD_DELETE",
+      goodDelete: BOOL
+   }
+}
+
 export function handleChange(e){
    return {
       type: "HANDLE_CHANGE",
@@ -56,9 +63,10 @@ export function needToSignup(BOOL){
    }
 }
 
-export function newBlogAdded(){
+export function newBlogAdded(BOOL){
    return {
-      type: "NEW_BLOG_ADDED"
+      type: "NEW_BLOG_ADDED",
+      newBlogAdded: BOOL
    }
 }
 

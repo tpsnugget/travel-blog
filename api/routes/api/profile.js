@@ -19,9 +19,9 @@ router.post("/", auth, async (req, res) => {
       user: id
    })
 
-   await profile.save()
+   const newProfile = await profile.save()
 
-   res.send("Profile POST Route is up Man!")
+   res.send(newProfile)
 })
 
 module.exports = router

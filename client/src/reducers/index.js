@@ -8,6 +8,12 @@ export default (state, action) => {
          images: [action.images]
       }
 
+      case "GOOD_DELETE":
+      return {
+         ...state,
+         goodDelete: action.goodDelete
+      }
+
       case "HANDLE_CHANGE":
       return {
          ...state,
@@ -47,12 +53,12 @@ export default (state, action) => {
       }
 
       case "NEW_BLOG_ADDED":
-      console.log("Reducer NEW_BLOG_ADDED is running...")
+      // console.log("Reducer NEW_BLOG_ADDED is running...")
       return {
          ...state,
          image: "",
          images: [],
-         newBlogAdded: true,
+         newBlogAdded: action.newBlogAdded,
          text: "",
          title: ""
       }

@@ -45,7 +45,8 @@ class NewBlog extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
-               store.dispatch(newBlogAdded())
+               store.dispatch(newBlogAdded(true))
+               store.dispatch(newBlogAdded(false))
                // var { images } = store.getState()
                // console.log("NewBlog Components, images should be [] but are ", images)
                // store.dispatch(loggedInName(res.name))
