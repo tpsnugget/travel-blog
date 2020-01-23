@@ -1,5 +1,6 @@
 const express = require("express"),
-   router = express.Router()
+   router = express.Router(),
+   auth = require("../../middleware/auth")
 
    const Blog = require("../../models/Blog")
 
@@ -51,6 +52,13 @@ router.post("/", async (req, res) => {
    // console.log("api POST NewBlog answer from DB is ", newBlog)
 
    res.json(newBlog)
+})
+
+router.delete("/delete/:id", auth, async (req, res) => {
+   // console.log("api DELETE route passed auth")
+   // console.log("api DELETE route req.params.id is", req.params.id)
+   const deletedBlog = await Blog.findByIdAndDelete(req.params.id)
+   res.send("Blog was deleted...")
 })
 
 module.exports = router

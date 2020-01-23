@@ -28,7 +28,7 @@ class Mininavbar extends Component {
 
       // const { allowedToModifySelection } = store.getState()
       const { blog, id, username } = store.getState()
-      const { addedById } = blog
+      const { _id, addedById } = blog
       const add = (username === "Mike Giebner" || username === "Shari Tonks")
       const edit = (addedById === id)
       // console.log("Mininavbar Component addedById is ", addedById)
@@ -40,7 +40,7 @@ class Mininavbar extends Component {
 
             {add && <LinkButton buttonLabel="Add New Blog" newPath={"/blog/new"} />}
             {add && edit && <LinkButton buttonLabel="Edit Blog" chosenId={chosenId} newPath={"/blog/edit"} />}
-            {add && edit && <LinkButton buttonLabel="Delete Blog" chosenId={chosenId} newPath="/blog/delete" />}
+            {add && edit && <LinkButton buttonLabel="Delete Blog" chosenId={_id} newPath={`/blog/delete/${_id}`} />}
 
          </div>
       )

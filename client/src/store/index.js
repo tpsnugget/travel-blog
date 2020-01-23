@@ -9,6 +9,7 @@ const initialState = {
    blog: {},
    blogs: [],
    email: "",
+   goodDelete: false,
    hasProfile: true,
    id: "",
    image: "",
