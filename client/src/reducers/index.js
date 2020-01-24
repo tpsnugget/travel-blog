@@ -38,7 +38,7 @@ export default (state, action) => {
       // console.log("HANDLE_PHOTO_EDIT Reducer array is", action.images)
       return {
          ...state,
-         blog: {...state.blog, images: action.images }
+         images: action.images
       }
 
       case "HAS_PROFILE":
