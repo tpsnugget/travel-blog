@@ -8,6 +8,12 @@ export default (state, action) => {
          images: [action.images]
       }
 
+      case "BLOG_UPDATED":
+      return {
+         ...state,
+         blogUpdated: action.blogUpdated
+      }
+
       case "GOOD_DELETE":
       return {
          ...state,
@@ -29,7 +35,7 @@ export default (state, action) => {
       }
 
       case "HANDLE_PHOTO_EDIT":
-      console.log("HANDLE_PHOTO_EDIT Reducer array is", action.images)
+      // console.log("HANDLE_PHOTO_EDIT Reducer array is", action.images)
       return {
          ...state,
          blog: {...state.blog, images: action.images }
@@ -86,6 +92,15 @@ export default (state, action) => {
       return {
          ...state,
          blog: action.blog
+      }
+
+      case "SAVE_BLOG_DATA":
+      return {
+         ...state,
+         blogId: action.blogId,
+         images: action.images,
+         text: action.text,
+         title: action.title,
       }
 
       case "SAVE_BLOGS":
