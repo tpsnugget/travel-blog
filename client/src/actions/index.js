@@ -84,6 +84,12 @@ export function newBlogAdded(BOOL){
    }
 }
 
+export function resetBlogData(){
+   return {
+      type: "RESET_BLOG_DATA"
+   }
+}
+
 export function saveBlogId(id){
    return {
       type: "SAVE_BLOG_ID",

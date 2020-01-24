@@ -82,6 +82,15 @@ export default (state, action) => {
          needToSignup: action.needToSignup
       }
 
+      case "RESET_BLOG_DATA":
+      return {
+         ...state,
+         blogId: "",
+         images: [],
+         text: "",
+         title: "",
+      }
+
       case "SAVE_BLOG_ID":
       return {
          ...state,
