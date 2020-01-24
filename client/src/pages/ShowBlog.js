@@ -92,7 +92,6 @@ class ShowBlog extends Component {
                         <Moment format="DD MMM, YYYY at HH:MM a">
                            {date}
                         </Moment>
-
                      </div>
                   </div>
                </div>

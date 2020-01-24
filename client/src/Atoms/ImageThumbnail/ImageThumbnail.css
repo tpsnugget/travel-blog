@@ -13,3 +13,8 @@
    width: 200px;
    border-radius: 0.35rem;
 }
+
+.ImageThumbnail-image-edit:hover {
+   opacity: 50%;
+   color: white;
+}

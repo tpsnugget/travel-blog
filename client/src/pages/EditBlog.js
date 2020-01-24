@@ -24,14 +24,21 @@ class EditBlog extends Component {
       store.dispatch(handleChange(e))
    }
 
-   handleClick = (e) => {
-      // console.log("I clicked on the Blog Delete X", e.target.id)
-      const { blog } = store.getState()
-      // console.log("blog is", blog)
-      var { images } = blog
-      // console.log("images array is", images)
-      images = images.filter( image => image !== e.target.id )
-      // console.log("images array is", images)
+   // handleClick = (e) => {
+   //    // console.log("I clicked on the Blog Delete X", e.target.id)
+   //    const { blog } = store.getState()
+   //    // console.log("blog is", blog)
+   //    var { images } = blog
+   //    // console.log("images array is", images)
+   //    images = images.filter(image => image !== e.target.id)
+   //    // console.log("images array is", images)
+   //    store.dispatch(handlePhotoEdit(images))
+   // }
+
+   handleDeletePhoto = (e) => {
+      console.log("You clicked a photo to delete it, id is", e.target.src)
+      var { images } = store.getState()
+      images = images.filter(image => image !== e.target.src)
       store.dispatch(handlePhotoEdit(images))
    }
 
@@ -81,8 +88,13 @@ class EditBlog extends Component {
 
       if (images.length > 0) {
          imagesToDisplay = images.map((image) =>
-            <div id={image} key={image} onClick={this.handleClick}>X
-               <ImageThumbnail id={image} image={image} />
+            <div className="EditBlog-imagethumbnail-individual" key={image} >
+               <ImageThumbnail
+                  edit={true}
+                  id={image}
+                  image={image}
+                  handleDeletePhoto={this.handleDeletePhoto}
+               />
             </div>
          )
       }
@@ -96,6 +108,7 @@ class EditBlog extends Component {
             </div>
 
             <div className="EditBlog-blog-container">
+               <div className="EditBlog-div">
                {blogUpdated && <Redirect to="/blog/main" />}
                <form
                   className="EditBlog-form"
@@ -133,6 +146,7 @@ class EditBlog extends Component {
                </form>
             </div>
          </div>
+         </div >
       )
    }
 }
