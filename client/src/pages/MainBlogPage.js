@@ -13,6 +13,10 @@ class MainBlogPage extends Component{
    }
 
    render(){
+
+      // const { goodDelete } = store.getState()
+      // console.log("goodDelete from store is ", goodDelete)
+
       return(
          <div>
             <Navbar />

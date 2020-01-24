@@ -2,7 +2,7 @@ const express = require("express"),
    router = express.Router(),
    auth = require("../../middleware/auth")
 
-   const Blog = require("../../models/Blog")
+const Blog = require("../../models/Blog")
 
 // @route   GET api/blogs
 // @desc    Test route
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 router.get("/show/:id", async (req, res) => {
    // console.log("Blog GET One route req.params ", req.params)
 
-   const blogs = await Blog.findById(req.params.id)
+   const blog = await Blog.findById(req.params.id)
 
    // var { date } = blogs
    // Date.format(date, "ddd, MMM DD YYYY", true)
@@ -28,7 +28,7 @@ router.get("/show/:id", async (req, res) => {
 
    // console.log("blogs are ", blogs)
 
-   res.send(blogs)
+   res.json(blog)
 })
 
 router.post("/", async (req, res) => {
@@ -58,7 +58,34 @@ router.delete("/delete/:id", auth, async (req, res) => {
    // console.log("api DELETE route passed auth")
    // console.log("api DELETE route req.params.id is", req.params.id)
    const deletedBlog = await Blog.findByIdAndDelete(req.params.id)
-   res.send("Blog was deleted...")
+   res.send(deletedBlog)
+})
+
+router.put("/edit", auth, async (req, res) => {
+   // console.log("api EDIT route passed auth")
+   // console.log("api EDIT route req.body is", req.body)
+
+   var updateBlog = await Blog.findById(req.body._id)
+   console.log("api EDIT updateBlog is", updateBlog)
+   updateBlog.images = req.body.images
+   updateBlog.text = req.body.text
+   updateBlog.title = req.body.title
+
+   const updatedBlog = await updateBlog.save()
+
+   // const updatedBlog = await new Blog({
+   //    _id,
+   //    addedById,
+   //    addedByUsername,
+   //    images,
+   //    text,
+   //    title
+   // })
+
+   // updatedBlog = await Blog.findByIdAndUpdate(_id, updatedBlog)
+   // updatedBlog = await blog.save()
+
+   res.json(updatedBlog)
 })
 
 module.exports = router

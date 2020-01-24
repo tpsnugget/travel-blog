@@ -28,6 +28,13 @@ export function handlePhoto(image){
    }
 }
 
+export function handlePhotoEdit(images){
+   return {
+      type: "HANDLE_PHOTO_EDIT",
+      images: images
+   }
+}
+
 export function hasProfile(BOOL){
    return {
       type: "HAS_PROFILE",

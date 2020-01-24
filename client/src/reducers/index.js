@@ -28,6 +28,13 @@ export default (state, action) => {
          image: ""
       }
 
+      case "HANDLE_PHOTO_EDIT":
+      console.log("HANDLE_PHOTO_EDIT Reducer array is", action.images)
+      return {
+         ...state,
+         blog: {...state.blog, images: action.images }
+      }
+
       case "HAS_PROFILE":
       return {
          ...state,
