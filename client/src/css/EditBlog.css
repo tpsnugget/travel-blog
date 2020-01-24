@@ -1,0 +1,35 @@
+.EditBlog-main-container {
+   width: 90%;
+   margin: 1rem auto;
+}
+
+.EditBlog-header {
+   display: flex;
+   justify-content: space-around;
+   background-color: rgba(41, 69, 194, 0.25);
+   border-radius: 0.3rem;
+   border: 0.5px solid black;
+}
+
+.EditBlog-blog-container {
+   width: 100%;
+   display: flex;
+   margin: 2rem auto;
+   justify-content: flex-start;
+   background-color: rgba(41, 69, 194, 0.1);
+   border-radius: 0.3rem;
+   border: 0.5px solid black;
+}
+
+.EditBlog-form {
+   margin: 1rem;
+}
+
+.EditBlog-submit-button {
+   margin-top: 1rem;
+}
+
+.EditBlog-imagethumbnail {
+   display: flex;
+   margin-top: 1rem;
+}

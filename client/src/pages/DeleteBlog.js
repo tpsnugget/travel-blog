@@ -21,21 +21,22 @@ class DeleteBlog extends Component {
          }
       })
          .then(
-            res => res.text())
-         .then( text => {
-            console.log("text is", text)
+            res => {
+               return res.json()
+            // console.log("res is ", res)
+         })
+         .then( json => {
+            console.log("api res.json() json is", json)
             store.dispatch(goodDelete(true))
-            // const { goodDelete } = store.getState()
-            // console.log("goodDelete from store is ", goodDelete)
-         } )
-         // store.dispatch(goodDelete(true))
-         // store.dispatch(goodDelete(false))
+            store.dispatch(goodDelete(false))
+            return
+         })
    }
 
    render() {
 
       const { goodDelete } = store.getState()
-      console.log("goodDelete from store is ", goodDelete)
+      // console.log("goodDelete from store is ", goodDelete)
 
       return (
          <div>
