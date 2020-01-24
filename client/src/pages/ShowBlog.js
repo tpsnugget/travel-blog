@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Moment from "react-moment"
 import { store } from "../store"
-import { handleChange, handlePhoto, saveABlog } from "../actions"
+import { handleChange, handlePhoto, saveABlog, saveBlogData } from "../actions"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import Mininavbar from "../pages/Mininavbar"
@@ -30,6 +30,8 @@ class ShowBlog extends Component {
             } else {
                // console.log("One Blog returned was ", res)
                store.dispatch(saveABlog(res))
+               // This saves id, images, text and title in the store for use by EditBlog
+               store.dispatch(saveBlogData(res))
             }
          })
    }

@@ -8,6 +8,7 @@ const initialState = {
    blogId: "",
    blog: {},
    blogs: [],
+   blogUpdated: false,
    email: "",
    goodDelete: false,
    hasProfile: true,

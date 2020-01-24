@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
 import { store } from "../store"
-import { handleChange, handlePhoto, handlePhotoEdit, newBlogAdded } from "../actions"
+// import { blogUpdated, handleChange, handlePhoto, handlePhotoEdit, saveABlog } from "../actions"
+import { blogUpdated, handleChange, handlePhoto, handlePhotoEdit } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
 import ImageEntry from "../Atoms/ImageEntry/ImageEntry"
@@ -24,25 +25,26 @@ class EditBlog extends Component {
    }
 
    handleClick = (e) => {
-      console.log("I clicked on the Blog Delete X", e.target.id)
+      // console.log("I clicked on the Blog Delete X", e.target.id)
       const { blog } = store.getState()
-      console.log("blog is", blog)
+      // console.log("blog is", blog)
       var { images } = blog
-      console.log("images array is", images)
+      // console.log("images array is", images)
       images = images.filter( image => image !== e.target.id )
-      console.log("images array is", images)
+      // console.log("images array is", images)
       store.dispatch(handlePhotoEdit(images))
    }
 
    handleSubmit = (e) => {
       e.preventDefault()
 
-      const { blog, token } = store.getState()
-      const { addedById, addedByUsername, _id, images, text, title } = blog
+      const { blog, images, text, title, token } = store.getState()
+      // const { _id, addedById, addedByUsername, images, text, title } = blog
+      const { _id } = blog
 
       // console.log("Edit Blog Component, images, text, title are ", images, text, title)
 
-      const url = `http://localhost:9000/api/blogs/edit/${_id}`
+      // const url = `http://localhost:9000/api/blogs/edit/${_id}`
 
       fetch("http://localhost:9000/api/blogs/edit", {
          method: "PUT",
@@ -50,7 +52,8 @@ class EditBlog extends Component {
             "Content-Type": "application/json",
             "x-auth-token": token
          },
-         body: JSON.stringify({ _id: _id, addedById: addedById, addedByUsername: addedByUsername, images: images, text: text, title: title })
+         // body: JSON.stringify({ _id: _id, addedById: addedById, addedByUsername: addedByUsername, images: images, text: text, title: title })
+         body: JSON.stringify({ _id: _id, images: images, text: text, title: title })
       })
          .then(res => res.text())
          // .then(text => console.log(text))
@@ -59,8 +62,8 @@ class EditBlog extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
-               // store.dispatch(newBlogAdded(true))
-               // store.dispatch(newBlogAdded(false))
+               store.dispatch(blogUpdated(true))
+               store.dispatch(blogUpdated(false))
                // var { images } = store.getState()
                // console.log("EditBlog Components, images should be [] but are ", images)
                // store.dispatch(loggedInName(res.name))
@@ -70,8 +73,7 @@ class EditBlog extends Component {
 
    render() {
 
-      const { blog } = store.getState()
-      const { images, title, text } = blog
+      const { blogUpdated, images, text, title } = store.getState()
 
       // console.log("images array is", images)
 
@@ -94,7 +96,7 @@ class EditBlog extends Component {
             </div>
 
             <div className="EditBlog-blog-container">
-               {/* {newBlogAdded && <Redirect to="/blog/main" />} */}
+               {blogUpdated && <Redirect to="/blog/main" />}
                <form
                   className="EditBlog-form"
                   onSubmit={this.handleSubmit}

@@ -5,6 +5,13 @@ export function addImage(e){
    }
 }
 
+export function blogUpdated(BOOL){
+   return {
+      type: "BLOG_UPDATED",
+      blogUpdated: BOOL
+   }
+}
+
 export function goodDelete(BOOL){
    return {
       type: "GOOD_DELETE",
@@ -88,6 +95,16 @@ export function saveABlog(blog){
    return {
       type: "SAVE_A_BLOG",
       blog: blog
+   }
+}
+
+export function saveBlogData(blog){
+   return {
+      type: "SAVE_BLOG_DATA",
+      blogId: blog._id,
+      images: blog.images,
+      text: blog.text,
+      title: blog.title
    }
 }
 
