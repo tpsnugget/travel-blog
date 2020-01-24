@@ -10,11 +10,13 @@
 }
 
 .ImageThumbnail-image {
+   z-index: 0;
    width: 200px;
    border-radius: 0.35rem;
 }
 
 .ImageThumbnail-image-edit:hover {
+   z-index: 1;
    opacity: 50%;
-   color: white;
+   border-image-source: url("https://svgsilh.com/svg/44039.svg") 30 fill / 20px / 20px space;
 }

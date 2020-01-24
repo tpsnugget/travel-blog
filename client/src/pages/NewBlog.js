@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
 import { store } from "../store"
-import { handleChange, handlePhoto, handlePhotoEdit, newBlogAdded } from "../actions"
+import { handleChange, handlePhoto, newBlogAdded, resetBlogData } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
 import ImageEntry from "../Atoms/ImageEntry/ImageEntry"
@@ -13,7 +13,7 @@ import "../css/NewBlog.css"
 class NewBlog extends Component {
 
    componentDidMount(){
-      store.dispatch(handlePhotoEdit([]))
+      store.dispatch(resetBlogData())
    }
 
    handlePhoto = (e) => {
