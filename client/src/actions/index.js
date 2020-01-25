@@ -19,6 +19,13 @@ export function goodDelete(BOOL){
    }
 }
 
+export function goodSignup(BOOL){
+   return {
+      type: "GOOD_SIGNUP",
+      goodSignup: BOOL
+   }
+}
+
 export function handleChange(e){
    return {
       type: "HANDLE_CHANGE",
@@ -121,9 +128,33 @@ export function saveBlogs(blogs){
    }
 }
 
+export function saveErrors(errors){
+   console.log("saveErrors action creator errers are", errors)
+   return {
+      type: "SAVE_ERRORS",
+      errors: errors
+   }
+}
+
 export function saveToken(token){
    return {
       type: "SAVE_TOKEN",
       token: token
+   }
+}
+
+export function snackBarGreenOpen(BOOL, msg){
+   return {
+      type: "SNACK_BAR_GREEN_OPEN",
+      snackBarGreenOpen: BOOL,
+      msg: msg
+   }
+}
+
+export function snackBarRedOpen(BOOL, msg){
+   return {
+      type: "SNACK_BAR_RED_OPEN",
+      snackBarRedOpen: BOOL,
+      msg: msg
    }
 }
