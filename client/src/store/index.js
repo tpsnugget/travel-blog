@@ -10,19 +10,24 @@ const initialState = {
    blogs: [],
    blogUpdated: false,
    email: "",
+   errors: [],
    goodDelete: false,
+   goodSignup: false,
    hasProfile: true,
    id: "",
    image: "",
    images: [],
    isLoggedIn: false,
    location: "",
-   username: "",
+   msg: "",
    needToSignup: false,
    newBlogAdded: false,
+   snackBarGreenOpen: false,
+   snackBarRedOpen: false,
    text: "",
    title: "",
-   token: ""
+   token: "",
+   username: "",
 }
 
 export const store = createStore(reducer, initialState)

@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router-dom"
 import { store } from "../store"
 import { handleChange, hasProfile } from "../actions"
 import { Button } from "../Atoms/Button/Button"
@@ -53,6 +54,8 @@ class Profile extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
+               console.log("newProfile from api is", res)
+               store.dispatch(hasProfile(true))
                // store.dispatch(isLoggedIn(true))
                // store.dispatch(loggedInName(res.name))
             }
@@ -62,8 +65,12 @@ class Profile extends Component {
    }
 
    render() {
+
+      const { hasProfile, isLoggedIn } = store.getState()
+
       return (
          <div className="Profile-main-container">
+         { hasProfile && isLoggedIn && <Redirect to="/blog/main" />}
             <h1>Profile</h1>
             <h2>You must submit a profile before moving on</h2>
             <form onSubmit={this.handleSubmit}>

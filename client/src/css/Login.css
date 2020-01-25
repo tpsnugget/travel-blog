@@ -1,15 +1,49 @@
 .Login-main-container {
-   width: 90%;
-   margin: auto;
+   width: 50%;
+   margin: 2rem auto;
+   padding: 1rem 0;
+   background-color: rgba(179, 10, 10, 0.733);
+   border-radius: 0.5rem;
+   border: 0.5px solid darkgray;
+}
+
+.Login-h1 {
+   margin: 0;
    text-align: center;
+}
+
+.Login-name-container {
+   display: flex;
 }
 
 .Login-input-container {
    display: flex;
+   justify-content: center;
+}
+
+.Login-name {
+   display: flex;
+   justify-content: flex-start;
+   margin: 1rem 0 0 0;
+}
+
+.Login-login-data {
+   display: flex;
 }
 
 .Login-button-container {
+   width: 90%;
    display: flex;
-   justify-content: flex-start;
-   margin: 1rem 0 0 1rem;
+   margin: 0 auto 0;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+.Login-submit-button {
+   align-self: center;
+   margin: 1rem 0 0 4rem;
+}
+
+.Login-cancel-button {
+   margin-left: 2rem;
 }

@@ -20,6 +20,12 @@ export default (state, action) => {
          goodDelete: action.goodDelete
       }
 
+      case "GOOD_SIGNUP":
+      return {
+         ...state,
+         goodSignup: action.goodSignup
+      }
+
       case "HANDLE_CHANGE":
       return {
          ...state,
@@ -118,10 +124,31 @@ export default (state, action) => {
          blogs: action.blogs
       }
 
+      case "SAVE_ERROS":
+      return {
+         ...state,
+         errors: action.errors
+      }
+
       case "SAVE_TOKEN":
       return {
          ...state,
          token: action.token
+      }
+
+      case "SNACK_BAR_GREEN_OPEN":
+      // console.log("SNACK_BAR_GREEN_OPEN ", action)
+      return {
+         ...state,
+         snackBarGreenOpen: action.snackBarGreenOpen,
+         msg: action.msg
+      }
+
+      case "SNACK_BAR_RED_OPEN":
+      return {
+         ...state,
+         snackBarRedOpen: action.snackBarRedOpen,
+         msg: action.msg
       }
 
       default:

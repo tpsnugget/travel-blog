@@ -22,17 +22,18 @@ router.post("/", [
 ], async (req, res) => {
    const errors = validationResult(req)
    if(!errors.isEmpty()){
+      console.log("api user POST route validation errors are ", errors.array())
       return res.status(422).json({errors: errors.array()})
    }
 
    const { email, username, password } = req.body
-   // console.log("api users POST route user is ", req.body)
+   console.log("api users POST route user is ", req.body)
 
    try{
       let user = await User.findOne({email})
 
-      // console.log("api users POST route TRY Block is up Man!")
-      // console.log("api users POST route user will be false if user does not exist ", user)
+      console.log("api users POST route TRY Block is up Man!")
+      console.log("api users POST route user will be false if user does not exist ", user)
 
       if(user){
          return res.status(400).json({ errors: [{ msg: "User already exists" }] })
@@ -55,23 +56,24 @@ router.post("/", [
       })
 
       const newUser = await user.save()
-      // console.log("api users POST newUser = await user.save() is ", newUser)
+      console.log("api users POST newUser = await user.save() is ", newUser)
 
-      const payload = {
-         user: {
-            id: user.id
-         }
-      }
+      // const payload = {
+      //    user: {
+      //       id: user.id
+      //    }
+      // }
 
-      jwt.sign(
-         payload, 
-         config.get("jwtSecret"),
-         {expiresIn: 3600},
-         (err, token) => {
-            if(err) throw err
-            // console.log("api user POST route token and username are ", token, username)
-            res.json({token, username})
-         })
+      // jwt.sign(
+      //    payload, 
+      //    config.get("jwtSecret"),
+      //    {expiresIn: 3600},
+      //    (err, token) => {
+      //       if(err) throw err
+      //       console.log("api user POST route token and username are ", token, username)
+      //       res.json({token: token, username: username})
+      //    })
+         res.json({username: username})
    } catch(err){
       console.error(err.message)
       res.status(500).send("Server error")

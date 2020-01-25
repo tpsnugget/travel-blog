@@ -1,7 +1,20 @@
 .Signup-main-container {
-   width: 90%;
-   margin: auto;
+   width: 50%;
+   margin: 2rem auto;
+   padding: 1rem 0;
+   background-color: rgba(179, 10, 10, 0.733);
+   border-radius: 0.5rem;
+   border: 0.5px solid darkgray;
+}
+
+.Signup-h1 {
+   margin: 0;
    text-align: center;
+}
+
+.Signup-input-container {
+   display: flex;
+   justify-content: center;
 }
 
 .Signup-name-container {
@@ -19,9 +32,15 @@
 }
 
 .Signup-button-container {
+   width: 90%;
    display: flex;
-   justify-content: flex-start;
-   margin: 1rem 0 0 1rem;
+   margin: 1rem auto 0;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+.Signup-submit-button {
+   align-self: center;
 }
 
 .Signup-cancel-button {
