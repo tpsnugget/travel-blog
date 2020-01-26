@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom"
-import { store } from "./store"
 import NewBlog from "./pages/NewBlog"
 import EditBlog from "./pages/EditBlog"
 import ShowBlog from "./pages/ShowBlog"
@@ -11,8 +10,6 @@ import Profile from "./pages/Profile"
 import MainBlogPage from "./pages/MainBlogPage"
 
 function App() {
-
-  const { isLoggedIn } = store.getState()
 
   return (
     <div className="App">
