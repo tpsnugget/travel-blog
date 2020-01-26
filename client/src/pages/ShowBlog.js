@@ -17,7 +17,6 @@ class ShowBlog extends Component {
       }
       else {
          var { id } = this.props.location.state
-
       }
 
       // console.log("ShowBlog Blog Component id is ", id)
@@ -74,7 +73,7 @@ class ShowBlog extends Component {
 
             <div className="ShowBlog-header">
                <h1>{title}</h1>
-               <span><LinkButton name="Cancel" newPath={"/blog/main"} /></span>
+               <span><LinkButton name="All Blogs" newPath={"/blog/main"} /></span>
             </div>
 
             <div className="ShowBlog-blog-container">
