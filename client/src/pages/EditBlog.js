@@ -36,10 +36,14 @@ class EditBlog extends Component {
    // }
 
    handleDeletePhoto = (e) => {
-      console.log("You clicked a photo to delete it, id is", e.target.src)
+      console.log("You clicked a photo to delete it, id is", e.target.id)
       var { images } = store.getState()
-      images = images.filter(image => image !== e.target.src)
+      images = images.filter(image => image !== e.target.id)
       store.dispatch(handlePhotoEdit(images))
+   }
+
+   handleMouseOver = (e) => {
+      console.log("EditBlog Component onMouseOver event", e.target.id)
    }
 
    handleSubmit = (e) => {
@@ -88,12 +92,24 @@ class EditBlog extends Component {
 
       if (images.length > 0) {
          imagesToDisplay = images.map((image) =>
-            <div className="EditBlog-imagethumbnail-individual" key={image} >
+            <div
+               className="EditBlog-imagethumbnail-individual"
+               key={image}
+            >
+               <div className="EditBlog-span-div">
+                  <span
+                     aria-label="cut"
+                     className="EditBlog-span"
+                     id={image}
+                     role="img"
+                     onClick={this.handleDeletePhoto}
+                  > ⌧ </span>
+                  {/* ✂✂️❌⌧👎🚽🚫❎✕✘🗑 */}
+               </div>
                <ImageThumbnail
                   edit={true}
-                  id={image}
                   image={image}
-                  handleDeletePhoto={this.handleDeletePhoto}
+                  handleMouseOver={this.handleMouseOver}
                />
             </div>
          )
@@ -109,43 +125,43 @@ class EditBlog extends Component {
 
             <div className="EditBlog-blog-container">
                <div className="EditBlog-div">
-               {blogUpdated && <Redirect to="/blog/main" />}
-               <form
-                  className="EditBlog-form"
-                  onSubmit={this.handleSubmit}
-               >
-                  <div className="EditBlog-submit-button-div">
-                     <InputTextTripleLength
-                        label="Title"
-                        name="title"
-                        value={title}
-                        handleChange={this.handleChange}
-                     />
-                     <TextArea
-                        rows="10"
-                        cols="110"
-                        label="Text"
-                        name="text"
-                        value={text}
-                        handleChange={this.handleChange}
-                     />
-                     <ImageEntry handleChange={this.handleChange} />
-                     <div
-                        className="EditBlog-add-button"
-                        onClick={this.handlePhoto}
-                     >
-                        <Button label="Add Photo" />
+                  {blogUpdated && <Redirect to="/blog/main" />}
+                  <form
+                     className="EditBlog-form"
+                     onSubmit={this.handleSubmit}
+                  >
+                     <div className="EditBlog-submit-button-div">
+                        <InputTextTripleLength
+                           label="Title"
+                           name="title"
+                           value={title}
+                           handleChange={this.handleChange}
+                        />
+                        <TextArea
+                           rows="10"
+                           cols="110"
+                           label="Text"
+                           name="text"
+                           value={text}
+                           handleChange={this.handleChange}
+                        />
+                        <ImageEntry handleChange={this.handleChange} />
+                        <div
+                           className="EditBlog-add-button"
+                           onClick={this.handlePhoto}
+                        >
+                           <Button label="Add Photo" />
+                        </div>
+                        <div className="EditBlog-imagethumbnail">
+                           {imagesToDisplay}
+                        </div>
+                        <div className="EditBlog-submit-button">
+                           <Button label="Submit" />
+                        </div>
                      </div>
-                     <div className="EditBlog-imagethumbnail">
-                        {imagesToDisplay}
-                     </div>
-                     <div className="EditBlog-submit-button">
-                        <Button label="Submit" />
-                     </div>
-                  </div>
-               </form>
+                  </form>
+               </div>
             </div>
-         </div>
          </div >
       )
    }

@@ -37,16 +37,23 @@
    width: 100%;
 }
 
-.EditBlog-imagethumbnail-individual:hover {
-
-}
-
 .EditBlog-addedby-date {
    margin-top: 1rem;
 }
 
 .EditBlog-bottom-container {
    margin-top: 1rem;
+}
+
+.EditBlog-span-div {
+   width: 200px;
+   text-align: center;
+   font-size: 2rem;
+}
+
+.EditBlog-span:hover {
+   color: red;
+   transition: ease-in-out 0.2s;
 }
 
 .EditBlog-submit-button {
