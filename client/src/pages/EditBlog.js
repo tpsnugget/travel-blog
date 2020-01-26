@@ -84,7 +84,7 @@ class EditBlog extends Component {
 
    render() {
 
-      const { blogUpdated, images, text, title } = store.getState()
+      const { blogId, blogUpdated, images, text, title } = store.getState()
 
       // console.log("images array is", images)
 
@@ -115,6 +115,8 @@ class EditBlog extends Component {
          )
       }
 
+      const newPath = `/blog/show/${blogId}`
+
       return (
          <div className="EditBlog-main-container">
 
@@ -125,7 +127,7 @@ class EditBlog extends Component {
 
             <div className="EditBlog-blog-container">
                <div className="EditBlog-div">
-                  {blogUpdated && <Redirect to="/blog/main" />}
+                  {blogUpdated && <Redirect to={newPath} />}
                   <form
                      className="EditBlog-form"
                      onSubmit={this.handleSubmit}
