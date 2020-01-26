@@ -17,21 +17,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
+        <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
-          {/* <Signup />
-        </Route> */}
         <Route exact path="/profile" component={Profile} />
-          {/* <Profile />
-        </Route> */}
-        <Route exact path="/blog/main" component={MainBlogPage} />
-          {/* <MainBlogPage />
-        </Route> */}
         <Route exact path="/blog/new" component={NewBlog} />
-          {/* <NewBlog />
-        </Route> */}
+        <Route exact path="/blog/main" component={MainBlogPage} />
         <Route exact path="/blog/edit/:id" component={EditBlog} />
         <Route exact path="/blog/show/:id" component={ShowBlog} />
         <Route exact path="/blog/delete/:id" component={DeleteBlog} />

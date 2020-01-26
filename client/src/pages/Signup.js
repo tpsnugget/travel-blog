@@ -53,7 +53,7 @@ class Signup extends Component {
                }, 3000)
                // store.dispatch(saveErrors(res.errors))
             } else {
-               store.dispatch(snackBarGreenOpen(true, `Good Signup, ${res.username}!`))
+               store.dispatch(snackBarGreenOpen(true, `Good Signup, ${res.username}! Please login to continue.`))
                setTimeout(() => {
                   store.dispatch(snackBarGreenOpen(false, ""))
                   store.dispatch(goodSignup(true))

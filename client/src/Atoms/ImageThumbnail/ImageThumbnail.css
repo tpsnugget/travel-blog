@@ -18,5 +18,5 @@
 .ImageThumbnail-image-edit:hover {
    z-index: 1;
    opacity: 50%;
-   border-image-source: url("https://svgsilh.com/svg/44039.svg") 30 fill / 20px / 20px space;
+   transition: ease-in-out 0.2s;
 }
