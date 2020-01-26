@@ -11,7 +11,14 @@ class ShowBlog extends Component {
 
    componentDidMount() {
 
-      const { id } = this.props.location.state
+      if(this.props.location.state === undefined){
+         const { blogId } = store.getState()
+         var id = blogId
+      }
+      else {
+         var { id } = this.props.location.state
+
+      }
 
       // console.log("ShowBlog Blog Component id is ", id)
 
