@@ -64,9 +64,9 @@ class EditBlog extends Component {
             "x-auth-token": token
          },
          // body: JSON.stringify({ _id: _id, addedById: addedById, addedByUsername: addedByUsername, images: images, text: text, title: title })
-         body: JSON.stringify({ _id: _id, images: images, text: text, title: title })
+         body: JSON.stringify({ _id: _id, hasComments: false, images: images, text: text, title: title })
       })
-         .then(res => res.text())
+         .then(res => res.json())
          // .then(text => console.log(text))
          .then(res => {
             if (res.errors) {

@@ -45,4 +45,6 @@
 
 .Signup-cancel-button {
    margin-left: 2rem;
+   align-self: center;
+   margin-bottom: 2rem;
 }

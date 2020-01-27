@@ -65,27 +65,35 @@ router.put("/edit", auth, async (req, res) => {
    // console.log("api EDIT route passed auth")
    // console.log("api EDIT route req.body is", req.body)
 
-   var updateBlog = await Blog.findById(req.body._id)
-   console.log("api EDIT updateBlog is", updateBlog)
-   updateBlog.images = req.body.images
-   updateBlog.text = req.body.text
-   updateBlog.title = req.body.title
-
-   const updatedBlog = await updateBlog.save()
-
-   // const updatedBlog = await new Blog({
-   //    _id,
-   //    addedById,
-   //    addedByUsername,
-   //    images,
-   //    text,
-   //    title
-   // })
-
-   // updatedBlog = await Blog.findByIdAndUpdate(_id, updatedBlog)
-   // updatedBlog = await blog.save()
-
-   res.json(updatedBlog)
+   try{
+      var updateBlog = await Blog.findById(req.body._id)
+      console.log("api EDIT updateBlog = await Blog.findById answer is", updateBlog)
+      console.log("api EDIT res.errors is", res.errors)
+      // console.log("api EDIT res is", res)
+      updateBlog.hasComments = req.body.hasComments
+      updateBlog.images = req.body.images
+      updateBlog.text = req.body.text
+      updateBlog.title = req.body.title
+   
+      const updatedBlog = await updateBlog.save()
+   
+      // const updatedBlog = await new Blog({
+      //    _id,
+      //    addedById,
+      //    addedByUsername,
+      //    images,
+      //    text,
+      //    title
+      // })
+   
+      // updatedBlog = await Blog.findByIdAndUpdate(_id, updatedBlog)
+      // updatedBlog = await blog.save()
+   
+      res.json(updatedBlog)
+   } catch(err) {
+      console.error("api EDIT err.message in catch block is", err.message)
+      res.status(500).json({msg: err.message})
+   }
 })
 
 module.exports = router
