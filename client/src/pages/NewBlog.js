@@ -127,3 +127,8 @@ class NewBlog extends Component {
 }
 
 export default NewBlog
+
+// Day 1
+// https://images.unsplash.com/photo-1579777697301-dd312e02c58e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80
+// https://images.unsplash.com/photo-1522102448146-50d67d0251bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1347&q=80
+// https://images.unsplash.com/photo-1510270535907-dce35a12eb41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80

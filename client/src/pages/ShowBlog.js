@@ -24,8 +24,9 @@ class ShowBlog extends Component {
 
       // console.log("ShowBlog Blog Component id is ", id)
 
+      // =======================================================================
+      // Get ONE BLOG ==========================================================
       var url = `http://localhost:9000/api/blogs/show/${id}`
-
       // console.log("ShowBlog Blog Component url is ", url)
 
       fetch(url, {
@@ -39,11 +40,21 @@ class ShowBlog extends Component {
             } else {
                // console.log("One Blog returned was ", res)
                store.dispatch(saveABlog(res))
-               // This saves hasComments, id, images, text and title in the store for use by EditBlog
+               // This saves:
+               //    blogId
+               //    hasComments
+               //    id
+               //    images
+               //    text
+               //    title
+               // in the store for use by EditBlog
                store.dispatch(saveBlogData(res))
+      // Get ONE BLOG ==========================================================
+      // =======================================================================
 
-               // GET COMMENTS for this BLOG
-               console.log("ShowBlog blogId is", id)
+               // ==============================================================
+               // GET COMMENTS for ONE BLOG ====================================
+               // console.log("ShowBlog blogId is", id)
                url = `http://localhost:9000/api/comments/show/${id}`
 
                fetch(url, {
@@ -54,10 +65,12 @@ class ShowBlog extends Component {
                      // if(res.errors){
                      // console.error("ShowBlog Component, GET Comments error", res.errors)
                      // } else {
-                     console.log("ShowBlog Component, GET res is", res)
+                     // console.log("ShowBlog Component, GET res is", res)
                      store.dispatch(saveCommentArray(res))
                      // }
                   })
+               // GET COMMENTS for ONE BLOG ====================================
+               // ==============================================================
             }
          })
    }
@@ -78,7 +91,7 @@ class ShowBlog extends Component {
       const { blog, commentArray, hasComments } = store.getState()
       var { addedByUsername, date, images, text, title } = blog
 
-      console.log("ShowBlog Component, this blog has comments", hasComments)
+      // console.log("ShowBlog Component, this blog has comments", hasComments)
 
       if (!images) { images = [] }
 
@@ -93,10 +106,11 @@ class ShowBlog extends Component {
       const comments = commentArray.map(comment => {
          return (
             <div key={uuid()} className="ShowBlog-comment-container">
-               <p><strong>{comment.commentText}</strong></p>
-               <p>
-                  <span className="SlowBlog-postedby">Posted by: {comment.addedByUsername},</span>
-                  <span>on:
+   
+               <p className="ShowBlog-p"><strong>{comment.commentText}</strong></p>
+               <p className="ShowBlog-p">
+                  <span className="SlowBlog-postedby ShowBlog-span">Posted by: {comment.addedByUsername},</span>
+                  <span className="ShowBlog-span">on:
                      <Moment format="DD MMM, YYYY at HH:MM a">
                         {comment.date}
                      </Moment></span>
@@ -136,6 +150,7 @@ class ShowBlog extends Component {
                            {date}
                         </Moment>
                      </div>
+                     {hasComments && <hr className="ShowBlog-hr" />}
                      {hasComments && <h2>Comments:</h2>}
                      {hasComments && comments}
                   </div>
