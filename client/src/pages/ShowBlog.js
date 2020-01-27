@@ -1,18 +1,21 @@
 import React, { Component } from "react"
 import Moment from "react-moment"
+import { uuid } from "uuidv4"
 import { store } from "../store"
-import { handleChange, handlePhoto, saveABlog, saveBlogData } from "../actions"
+import { handleChange, handlePhoto, saveABlog, saveBlogData, saveCommentArray } from "../actions"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
-import Mininavbar from "../pages/Mininavbar"
+import Mininavbar from "./Mininavbar"
+import Comment from "./Comment"
 import "../css/ShowBlog.css"
 
 class ShowBlog extends Component {
 
    componentDidMount() {
 
-      if(this.props.location.state === undefined){
-         const { blogId } = store.getState()
+      const { blogId } = store.getState()
+
+      if (this.props.location.state === undefined) {
          var id = blogId
       }
       else {
@@ -21,7 +24,7 @@ class ShowBlog extends Component {
 
       // console.log("ShowBlog Blog Component id is ", id)
 
-      const url = `http://localhost:9000/api/blogs/show/${id}`
+      var url = `http://localhost:9000/api/blogs/show/${id}`
 
       // console.log("ShowBlog Blog Component url is ", url)
 
@@ -36,8 +39,25 @@ class ShowBlog extends Component {
             } else {
                // console.log("One Blog returned was ", res)
                store.dispatch(saveABlog(res))
-               // This saves id, images, text and title in the store for use by EditBlog
+               // This saves hasComments, id, images, text and title in the store for use by EditBlog
                store.dispatch(saveBlogData(res))
+
+               // GET COMMENTS for this BLOG
+               console.log("ShowBlog blogId is", id)
+               url = `http://localhost:9000/api/comments/show/${id}`
+
+               fetch(url, {
+                  method: "GET"
+               })
+                  .then(res => res.json())
+                  .then(res => {
+                     // if(res.errors){
+                     // console.error("ShowBlog Component, GET Comments error", res.errors)
+                     // } else {
+                     console.log("ShowBlog Component, GET res is", res)
+                     store.dispatch(saveCommentArray(res))
+                     // }
+                  })
             }
          })
    }
@@ -55,8 +75,10 @@ class ShowBlog extends Component {
 
    render() {
 
-      const { blog } = store.getState()
+      const { blog, commentArray, hasComments } = store.getState()
       var { addedByUsername, date, images, text, title } = blog
+
+      console.log("ShowBlog Component, this blog has comments", hasComments)
 
       if (!images) { images = [] }
 
@@ -67,6 +89,21 @@ class ShowBlog extends Component {
             <ImageThumbnail key={image} image={image} />
          )
       }
+
+      const comments = commentArray.map(comment => {
+         return (
+            <div key={uuid()} className="ShowBlog-comment-container">
+               <p><strong>{comment.commentText}</strong></p>
+               <p>
+                  <span className="SlowBlog-postedby">Posted by: {comment.addedByUsername},</span>
+                  <span>on:
+                     <Moment format="DD MMM, YYYY at HH:MM a">
+                        {comment.date}
+                     </Moment></span>
+               </p>
+            </div>
+         )
+      })
 
       return (
          <div className="ShowBlog-main-container">
@@ -79,9 +116,9 @@ class ShowBlog extends Component {
             <div className="ShowBlog-blog-container">
 
                <div className="ShowBlog-div">
-               <Mininavbar />
+                  <Mininavbar />
                   <div>
-                     <h2>{title}</h2>
+                     <h2 className="ShowBlog-h2">{title}</h2>
                   </div>
                   <div>
                      <p>{text}</p>
@@ -99,9 +136,12 @@ class ShowBlog extends Component {
                            {date}
                         </Moment>
                      </div>
+                     {hasComments && <h2>Comments:</h2>}
+                     {hasComments && comments}
                   </div>
                </div>
             </div>
+            <Comment />
          </div>
       )
    }

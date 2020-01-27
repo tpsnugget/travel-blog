@@ -1,4 +1,8 @@
 .Profile-main-container {
    width: 90%;
-   margin: auto;
+   margin: 1rem auto;
+   padding: 1rem;
+   border: 0.5px solid lightgray;
+   border-radius: 0.25rem;
+   background-color: rgba(131, 49, 49, 0.1);
 }

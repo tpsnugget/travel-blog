@@ -1,0 +1,17 @@
+.Comment-main-container {
+   width: 100%;
+   margin: 1rem auto;
+   background-color: rgba(41, 69, 194, 0.1);
+   border-radius: 0.3rem;
+   border: 0.5px solid black;
+}
+
+.Comment-header {
+   display: flex;
+   justify-content: flex-start;
+   padding: 0 0 0 1rem;
+}
+
+.Comment-inner-container {
+   padding: 0 0 1rem 1rem;
+}

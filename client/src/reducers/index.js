@@ -14,6 +14,12 @@ export default (state, action) => {
          blogUpdated: action.blogUpdated
       }
 
+      case "COMMENT_ADDED":
+      return {
+         ...state,
+         commentAdded: action.commentAdded
+      }
+
       case "GOOD_DELETE":
       return {
          ...state,
@@ -45,6 +51,13 @@ export default (state, action) => {
       return {
          ...state,
          images: action.images
+      }
+
+      case "HAS_COMMENT":
+      // console.log("HAS_COMMENT reducer is", action.hasComment)
+      return {
+         ...state,
+         hasComment: action.hasComment
       }
 
       case "HAS_PROFILE":
@@ -113,6 +126,7 @@ export default (state, action) => {
       return {
          ...state,
          blogId: action.blogId,
+         hasComments: action.hasComments,
          images: action.images,
          text: action.text,
          title: action.title,
@@ -122,6 +136,12 @@ export default (state, action) => {
       return {
          ...state,
          blogs: action.blogs
+      }
+
+      case "SAVE_COMMENT_ARRAY":
+      return {
+         ...state,
+         commentArray: action.commentArray
       }
 
       case "SAVE_ERROS":

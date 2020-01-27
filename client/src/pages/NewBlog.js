@@ -49,7 +49,7 @@ class NewBlog extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
-               console.log("NewBlog Component 2nd .then res is", res)
+               // console.log("NewBlog Component 2nd .then res is", res)
                // This saves id, images, text and title in the store for use by EditBlog
                store.dispatch(saveBlogData(res))
 

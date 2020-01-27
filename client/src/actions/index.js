@@ -12,6 +12,13 @@ export function blogUpdated(BOOL){
    }
 }
 
+export function commentAdded(BOOL){
+   return {
+      type: "COMMENT_ADDED",
+      commentAdded: BOOL
+   }
+}
+
 export function goodDelete(BOOL){
    return {
       type: "GOOD_DELETE",
@@ -46,6 +53,13 @@ export function handlePhotoEdit(images){
    return {
       type: "HANDLE_PHOTO_EDIT",
       images: images
+   }
+}
+
+export function hasComment(BOOL){
+   return {
+      type: "HAS_COMMENT",
+      hasComment: BOOL
    }
 }
 
@@ -115,6 +129,7 @@ export function saveBlogData(blog){
    return {
       type: "SAVE_BLOG_DATA",
       blogId: blog._id,
+      hasComments: blog.hasComments,
       images: blog.images,
       text: blog.text,
       title: blog.title
@@ -125,6 +140,13 @@ export function saveBlogs(blogs){
    return {
       type: "SAVE_BLOGS",
       blogs: blogs
+   }
+}
+
+export function saveCommentArray(array){
+   return {
+      type: "SAVE_COMMENT_ARRAY",
+      commentArray: array
    }
 }
 

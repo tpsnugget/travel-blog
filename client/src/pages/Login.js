@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { store } from "../store"
+// import bcrypt from "bcryptjs"
 import { Redirect } from "react-router-dom"
 import {
    handleChange, hasProfile, id, isLoggedIn, loggedInUsername, saveToken,
@@ -13,6 +14,7 @@ import { SnackbarGreen } from "../Atoms/SnackbarGreen/SnackbarGreen"
 import "../css/Login.css"
 
 var password = ""
+// const saltRounds = 10
 
 class Login extends Component {
 
@@ -29,10 +31,21 @@ class Login extends Component {
 
       const { email } = store.getState()
 
-      const url = `http://localhost:9000/api/auth?email=${email}&password=${password}`
+      // var salt = bcrypt.genSaltSync(saltRounds)
+      // var hash = bcrypt.hashSync(password, salt)
+      // console.log("Login Component hash is", hash)
 
-      fetch(url, {
-         method: "GET"
+      // const url = `http://localhost:9000/api/auth?email=${email}&password=${password}`
+
+      // fetch(url, {
+      //    method: "GET"
+      // })
+      fetch("http://localhost:9000/api/auth", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({ email: email, password: password })
       })
          .then(res => res.json())
          .then(res => {
@@ -48,7 +61,7 @@ class Login extends Component {
                console.log(res.text)
             }
             else {
-               console.log("Login Component res is ", res)
+               // console.log("Login Component res is ", res)
                store.dispatch(snackBarGreenOpen(true, `Good Login, ${res.username}!`))
                setTimeout(() => {
                   store.dispatch(snackBarGreenOpen(false, ""))
