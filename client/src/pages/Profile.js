@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
 import { store } from "../store"
+import Navbar from "./Navbar"
 import { handleChange, hasProfile } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
@@ -69,35 +70,40 @@ class Profile extends Component {
       const { hasProfile, isLoggedIn } = store.getState()
 
       return (
-         <div className="Profile-main-container">
-         { hasProfile && isLoggedIn && <Redirect to="/blog/main" />}
-            <h1>Profile</h1>
-            <h2>You must submit a profile before moving on</h2>
-            <form onSubmit={this.handleSubmit}>
-               <div>
-                  <InputText
-                     label="Location"
-                     name="location"
-                     placeholder="Location (City, State)"
-                     type="text"
-                     handleChange={this.handleChange}
-                  />
+         <div>
+                           <Navbar />
+            <div className="Profile-main-container">
+               {hasProfile && isLoggedIn && <Redirect to="/blog/main" />}
+               <div className="Profile-header">
+                  <h1>Profile</h1>
+                  <h2>You must submit a profile before moving on</h2>
                </div>
-               <div>
-                  <TextArea
-                     rows="10"
-                     cols="100"
-                     label="Bio"
-                     name="bio"
-                     placeholder="Bio"
-                     type="text"
-                     handleChange={this.handleChange}
-                  />
-               </div>
-               <div>
-                  <Button label="Submit" />
-               </div>
-            </form>
+               <form onSubmit={this.handleSubmit}>
+                  <div>
+                     <InputText
+                        label="Location"
+                        name="location"
+                        placeholder="Location (City, State)"
+                        type="text"
+                        handleChange={this.handleChange}
+                     />
+                  </div>
+                  <div>
+                     <TextArea
+                        rows="10"
+                        cols="115"
+                        label="Bio"
+                        name="bio"
+                        placeholder="Bio"
+                        type="text"
+                        handleChange={this.handleChange}
+                     />
+                  </div>
+                  <div>
+                     <Button label="Submit" />
+                  </div>
+               </form>
+            </div>
          </div>
       )
    }

@@ -11,6 +11,10 @@
    border: 0.5px solid black;
 }
 
+.ShowBlog-h2 {
+   margin-top: 2rem;
+}
+
 .ShowBlog-blog-container {
    width: 100%;
    display: flex;
@@ -38,4 +42,16 @@
 
 .ShowBlog-bottom-container {
    margin-top: 1rem;
+}
+
+.ShowBlog-comment-container {
+   width: 90%;
+   margin: 1rem auto;
+   padding: 1rem;
+   background-color: white;
+   border-radius: 0.3rem;
+}
+
+.SlowBlog-postedby {
+   margin-right: 0.5rem;
 }

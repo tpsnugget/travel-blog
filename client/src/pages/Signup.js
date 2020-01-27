@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
+import bcrypt from "bcryptjs"
 import { store } from "../store"
 import { goodSignup, handleChange, needToSignup, snackBarGreenOpen, snackBarRedOpen } from "../actions"
 import { Button } from "../Atoms/Button/Button"
@@ -10,6 +11,7 @@ import { SnackbarGreen } from "../Atoms/SnackbarGreen/SnackbarGreen"
 import "../css/Signup.css"
 
 var password = ""
+const saltRounds = 10
 
 class Signup extends Component {
 
@@ -18,10 +20,14 @@ class Signup extends Component {
 
       const { email, username } = store.getState()
 
+      var salt = bcrypt.genSaltSync(saltRounds)
+      var hash = bcrypt.hashSync(password, salt)
+      console.log("Signup Component hash is", hash)
+
       const data = {
          "username": username,
          "email": email,
-         "password": password
+         "password": hash
       }
 
       // console.log("email", email)

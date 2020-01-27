@@ -8,17 +8,17 @@ const express = require("express"),
 
 const User = require("../../models/User")
 
-const saltRounds = config.get("saltRounds")
+// const saltRounds = config.get("saltRounds")
 
 // @route   POST api/users
 // @desc    Test route
 // @access  Public access
 router.post("/", [
    check("username", "Name is required").not().isEmpty(),
-   check("email", "Please include a valid email").isEmail(),
-   check("password", "Please include a password with 6 or more characters").isLength({
-      min: 6
-   })
+   check("email", "Please include a valid email").isEmail()
+   // check("password", "Please include a password with 6 or more characters").isLength({
+      // min: 6
+   // })
 ], async (req, res) => {
    const errors = validationResult(req)
    if(!errors.isEmpty()){
@@ -45,13 +45,14 @@ router.post("/", [
          d: "mm"
       })
 
-      var salt = await bcrypt.genSaltSync(saltRounds)
-      var hash = await bcrypt.hashSync(password, salt)
+      // var salt = await bcrypt.genSaltSync(saltRounds)
+      // var hash = await bcrypt.hashSync(password, salt)
 
       user = new User({
          avatar,
          email,
-         password: hash,
+         // password: hash,
+         password: password,
          username
       })
 

@@ -52,7 +52,7 @@ class BlogEntry extends Component {
             )})
       return (
          <div className="BlogEntry-main-container">
-            <h1 className="BlogEntry-h1">Blogs</h1>
+            <h1 className="BlogEntry-h1">Travel Blogs</h1>
             <ul className="BlogEntry-ul">
                <div>
                   {blogTitles}

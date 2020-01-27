@@ -11,6 +11,10 @@ const BlogSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
    },
+   hasComments: {
+      type: Boolean,
+      default: false
+   },
    images: {
       type: Array
    },   text: {

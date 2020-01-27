@@ -11,12 +11,17 @@ const User = require("../../models/User")
 // @route   GET api/auth
 // @desc    Test route
 // @access  Public access
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
    try {
-      const user = await User.findOne({ "email": req.query.email })
+      const user = await User.findOne({ "email": req.body.email })
       const { hasProfile, id, username, password } = user
       // console.log("api auth route hasProfile, id, username, password ", hasProfile, id, username, password)
-      if(bcrypt.compareSync(req.query.password, password)){
+      // console.log(password)
+      // console.log(req.body.password)
+
+      if(bcrypt.compareSync(req.body.password, password)){
+
+      // if(req.body.password === password){
          // console.log("Passwords match!")
          const payload = {
             user: {
