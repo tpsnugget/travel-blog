@@ -7,7 +7,7 @@ import AddComment from "./AddComment"
 import ShowComment from "./ShowComment"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
-import { handleChange, handlePhoto, saveABlog, saveBlogData, saveCommentArray } from "../actions"
+import { handleChange, handlePhoto, saveABlog, saveBlogData } from "../actions"
 
 
 class ShowBlog extends Component {
@@ -46,25 +46,6 @@ class ShowBlog extends Component {
                //    title
                // in the store for use by EditBlog
                store.dispatch(saveBlogData(res))
-               // ==============================================================
-               // GET COMMENTS for ONE BLOG ====================================
-               // console.log("ShowBlog blogId is", id)
-               url = `http://localhost:9000/api/comments/show/${id}`
-
-               fetch(url, {
-                  method: "GET"
-               })
-                  .then(res => res.json())
-                  .then(res => {
-                     // if(res.errors){
-                     // console.error("ShowBlog Component, GET Comments error", res.errors)
-                     // } else {
-                     // console.log("ShowBlog Component, GET res is", res)
-                     store.dispatch(saveCommentArray(res))
-                     // }
-                  })
-               // GET COMMENTS for ONE BLOG ====================================
-               // ==============================================================
             }
          })
       // Get ONE BLOG ==========================================================
