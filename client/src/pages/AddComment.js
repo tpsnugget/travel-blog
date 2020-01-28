@@ -1,14 +1,19 @@
 import React, { Component } from "react"
 import { store } from "../store"
-import { commentAdded, handleChange, hasComment } from "../actions"
+import { commentAdded, handleChange, handleComment, hasCommentsUpdate } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
-import "../css/Comment.css"
+import "../css/AddComment.css"
 
-class Comment extends Component {
+class AddComment extends Component {
 
    handleChange = (e) => {
       store.dispatch(handleChange(e))
+   }
+
+   handleComment = () => {
+      const { commentText } = store.getState()
+      store.dispatch(handleComment(commentText))
    }
 
    handleSubmit = (e) => {
@@ -40,14 +45,13 @@ class Comment extends Component {
             if (res.errors) {
                console.error("Comment Component 2nd .this errors are", res.errors)
             } else {
-               console.log("Comment Component 2nd .this res", res)
+               // console.log("Comment Component 2nd .this res", res)
 
                // If there are no comments yet we now need to update this
                //  particular blog in the DB, hasComments: true
                if (!hasComments) {
                   console.log("Comment Component, sending true to store for hasComment")
-                  store.dispatch(hasComment(true))
-                  store.dispatch(commentAdded(true))
+                  store.dispatch(hasCommentsUpdate(true))
 
                   // ===========================================================
                   // UPDATE ONE BLOG ===========================================
@@ -70,19 +74,26 @@ class Comment extends Component {
                   // UPDATE ONE BLOG ===========================================
                   // ===========================================================
                }
+               store.dispatch(handleComment(commentText))
             }
+            // store.dispatch(commentAdded(true))
+            // store.dispatch(commentAdded(false))
+            // console.log("Comment Component commentText is", commentText)
          })
       // POST a NEW COMMENT ====================================================
       // =======================================================================
    }
 
    render() {
+
+      const { commentText } = store.getState()
+
       return (
-         <div className="Comment-main-container">
-            <div className="Comment-header">
+         <div className="AddComment-main-container">
+            <div className="AddComment-header">
                <h1>Add a Comment</h1>
             </div>
-            <div className="Comment-inner-container">
+            <div className="AddComment-inner-container">
                <form onSubmit={this.handleSubmit}>
                   <div>
                      <TextArea
@@ -91,10 +102,11 @@ class Comment extends Component {
                         label="Comment"
                         name="commentText"
                         placeholder="Comment"
+                        value={commentText}
                         handleChange={this.handleChange}
                      />
                   </div>
-                  <div className="Comment-submit-button">
+                  <div className="AddComment-submit-button">
                      <Button label="Submit" />
                   </div>
                </form>
@@ -104,4 +116,4 @@ class Comment extends Component {
    }
 }
 
-export default Comment
+export default AddComment

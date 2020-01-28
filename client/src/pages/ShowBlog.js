@@ -1,13 +1,14 @@
 import React, { Component } from "react"
-import Moment from "react-moment"
-import { uuid } from "uuidv4"
-import { store } from "../store"
-import { handleChange, handlePhoto, saveABlog, saveBlogData, saveCommentArray } from "../actions"
-import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
-import { LinkButton } from "../Atoms/LinkButton/LinkButton"
-import Mininavbar from "./Mininavbar"
-import Comment from "./Comment"
 import "../css/ShowBlog.css"
+import { store } from "../store"
+import Moment from "react-moment"
+import Mininavbar from "./Mininavbar"
+import AddComment from "./AddComment"
+import ShowComment from "./ShowComment"
+import { LinkButton } from "../Atoms/LinkButton/LinkButton"
+import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
+import { handleChange, handlePhoto, saveABlog, saveBlogData, saveCommentArray } from "../actions"
+
 
 class ShowBlog extends Component {
 
@@ -22,12 +23,9 @@ class ShowBlog extends Component {
          var { id } = this.props.location.state
       }
 
-      // console.log("ShowBlog Blog Component id is ", id)
-
       // =======================================================================
       // Get ONE BLOG ==========================================================
       var url = `http://localhost:9000/api/blogs/show/${id}`
-      // console.log("ShowBlog Blog Component url is ", url)
 
       fetch(url, {
          method: "GET"
@@ -38,7 +36,6 @@ class ShowBlog extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
-               // console.log("One Blog returned was ", res)
                store.dispatch(saveABlog(res))
                // This saves:
                //    blogId
@@ -49,9 +46,6 @@ class ShowBlog extends Component {
                //    title
                // in the store for use by EditBlog
                store.dispatch(saveBlogData(res))
-      // Get ONE BLOG ==========================================================
-      // =======================================================================
-
                // ==============================================================
                // GET COMMENTS for ONE BLOG ====================================
                // console.log("ShowBlog blogId is", id)
@@ -73,6 +67,9 @@ class ShowBlog extends Component {
                // ==============================================================
             }
          })
+      // Get ONE BLOG ==========================================================
+      // =======================================================================
+
    }
 
    handlePhoto = (e) => {
@@ -102,22 +99,6 @@ class ShowBlog extends Component {
             <ImageThumbnail key={image} image={image} />
          )
       }
-
-      const comments = commentArray.map(comment => {
-         return (
-            <div key={uuid()} className="ShowBlog-comment-container">
-   
-               <p className="ShowBlog-p"><strong>{comment.commentText}</strong></p>
-               <p className="ShowBlog-p">
-                  <span className="SlowBlog-postedby ShowBlog-span">Posted by: {comment.addedByUsername},</span>
-                  <span className="ShowBlog-span">on:
-                     <Moment format="DD MMM, YYYY at HH:MM a">
-                        {comment.date}
-                     </Moment></span>
-               </p>
-            </div>
-         )
-      })
 
       return (
          <div className="ShowBlog-main-container">
@@ -150,13 +131,11 @@ class ShowBlog extends Component {
                            {date}
                         </Moment>
                      </div>
-                     {hasComments && <hr className="ShowBlog-hr" />}
-                     {hasComments && <h2>Comments:</h2>}
-                     {hasComments && comments}
+                     {hasComments && <ShowComment />}
                   </div>
                </div>
             </div>
-            <Comment />
+            <AddComment />
          </div>
       )
    }
