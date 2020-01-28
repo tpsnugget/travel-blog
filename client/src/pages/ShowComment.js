@@ -2,15 +2,41 @@ import React, { Component } from 'react'
 import "../css/ShowComment.css"
 import { store } from "../store"
 import Moment from "react-moment"
+import { saveCommentArray } from "../actions"
 
 class ShowComment extends Component {
+
+   componentDidMount() {
+      // =======================================================================
+      // GET COMMENTS for ONE BLOG =============================================
+      // console.log("ShowBlog blogId is", id)
+      const { blogId } = store.getState()
+
+      const url = `http://localhost:9000/api/comments/show/${blogId}`
+
+      fetch(url, {
+         method: "GET"
+      })
+         .then(res => res.json())
+         .then(res => {
+            // if(res.errors){
+            // console.error("ShowBlog Component, GET Comments error", res.errors)
+            // } else {
+            // console.log("ShowBlog Component, GET res is", res)
+            store.dispatch(saveCommentArray(res))
+            // }
+         })
+      // GET COMMENTS for ONE BLOG =============================================
+      // =======================================================================
+   }
 
    handleDeleteComment = (e) => {
       e.preventDefault()
 
-      const { token } = store.getState()
+      const { commentArray, token } = store.getState()
 
-      console.log("ShowBlog Component, delete comment", e.target.id)
+      const newCommentArray = commentArray.filter( comment => e.target.id !== comment._id )
+      store.dispatch(saveCommentArray(newCommentArray))
 
       const url = `http://localhost:9000/api/comments/delete/${e.target.id}`
 
