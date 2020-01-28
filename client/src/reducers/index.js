@@ -38,6 +38,14 @@ export default (state, action) => {
          [action.label]: action.value
       }
 
+      case "HANDLE_COMMENT":
+      // console.log("HANDLE_COMMENT Reducer action.commentText is", action.commentText)
+      return {
+         ...state,
+         commentArray: [...state.commentArray, action.commentText],
+         commentText: ""
+      }
+
       case "HANDLE_PHOTO":
       // console.log("reducer action.image is ", action.image)
       return {
@@ -53,11 +61,11 @@ export default (state, action) => {
          images: action.images
       }
 
-      case "HAS_COMMENT":
+      case "HAS_COMMENTS_UPDATE":
       // console.log("HAS_COMMENT reducer is", action.hasComment)
       return {
          ...state,
-         hasComment: action.hasComment
+         hasComments: action.hasComments
       }
 
       case "HAS_PROFILE":

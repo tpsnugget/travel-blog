@@ -34,4 +34,10 @@ router.get("/show/:id", async (req, res) => {
    res.json(comments)
 })
 
+router.delete("/delete/:id", auth, async (req, res) => {
+   console.log("api Comment DELETE id", req.params.id)
+   const deletedComment = await Comment.findByIdAndDelete(req.params.id)
+   res.send(deletedComment)
+})
+
 module.exports = router

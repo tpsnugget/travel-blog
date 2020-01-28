@@ -1,0 +1,28 @@
+.ShowComment-comment-container {
+   width: 90%;
+   margin: 0.5rem auto;
+   padding: 0.2rem 1rem;
+   background-color: white;
+   border-radius: 0.3rem;
+}
+
+.ShowComment-comment-container:hover {
+   background-color: rgba(41, 69, 194, 0.25);
+   transition: ease-in-out 0.25s;
+}
+
+.SlowComment-postedby {
+   margin-right: 0.5rem;
+}
+
+.ShowComment-hr {
+   margin: 1rem auto;
+}
+
+.ShowComment-p {
+   margin: 0.5rem 0;
+}
+
+.ShowComment-span {
+   font-size: 0.85rem;
+}

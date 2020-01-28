@@ -1,4 +1,4 @@
-.Comment-main-container {
+.AddComment-main-container {
    width: 100%;
    margin: 1rem auto;
    background-color: rgba(41, 69, 194, 0.1);
@@ -6,12 +6,12 @@
    border: 0.5px solid black;
 }
 
-.Comment-header {
+.AddComment-header {
    display: flex;
    justify-content: flex-start;
    padding: 0 0 0 1rem;
 }
 
-.Comment-inner-container {
+.AddComment-inner-container {
    padding: 0 0 1rem 1rem;
 }

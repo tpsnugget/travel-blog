@@ -43,32 +43,3 @@
 .ShowBlog-bottom-container {
    margin-top: 1rem;
 }
-
-.ShowBlog-comment-container {
-   width: 90%;
-   margin: 0.5rem auto;
-   padding: 0.2rem 1rem;
-   background-color: white;
-   border-radius: 0.3rem;
-}
-
-.ShowBlog-comment-container:hover {
-   background-color: rgba(41, 69, 194, 0.25);
-   transition: ease-in-out 0.25s;
-}
-
-.SlowBlog-postedby {
-   margin-right: 0.5rem;
-}
-
-.ShowBlog-hr {
-   margin: 1rem auto;
-}
-
-.ShowBlog-p {
-   margin: 0.5rem 0;
-}
-
-.ShowBlog-span {
-   font-size: 0.85rem;
-}

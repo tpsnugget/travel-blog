@@ -41,6 +41,13 @@ export function handleChange(e){
    }
 }
 
+export function handleComment(commentText) {
+   return {
+      type: "HANDLE_COMMENT",
+      commentText: commentText
+   }
+}
+
 export function handlePhoto(image){
    // console.log("action creator image is ", image)
    return {
@@ -56,10 +63,10 @@ export function handlePhotoEdit(images){
    }
 }
 
-export function hasComment(BOOL){
+export function hasCommentsUpdate(BOOL){
    return {
-      type: "HAS_COMMENT",
-      hasComment: BOOL
+      type: "HAS_COMMENTS_UPDATE",
+      hasComments: BOOL
    }
 }
 
