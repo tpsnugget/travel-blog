@@ -188,9 +188,11 @@ export default (state, action) => {
       }
 
       case "SAVE_COMMENT_ARRAY":
+      console.log("SAVE_COMMENT_ARRAY numComments is", action.commentArray.length)
       return {
          ...state,
-         commentArray: action.commentArray
+         commentArray: action.commentArray,
+         numComments: action.commentArray.length
       }
 
       case "SAVE_ERROS":

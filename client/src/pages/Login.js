@@ -13,7 +13,7 @@ import {
 var password = ""
 // const saltRounds = 10
 
-console.log("Login Component, outside the class")
+// console.log("Login Component, outside the class")
 
 class Login extends Component {
 

@@ -9,19 +9,11 @@ import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import { saveABlog, saveBlogData, clearBlogData } from "../actions"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
 
-
 class ShowBlog extends Component {
 
    componentDidMount() {
 
-      // const { blogId } = store.getState()
-
-      // if (this.props.location.state === undefined) {
-      //    var id = blogId
-      // }
-      // else {
          var { id } = this.props.location.state
-      // }
 
       // =======================================================================
       // Get ONE BLOG ==========================================================
@@ -39,14 +31,8 @@ class ShowBlog extends Component {
                // This saves into blog {} in the store
                store.dispatch(saveABlog(res))
 
-
                // This saves into individual key: value pairs in the store:
-               //    blogId
-               //    hasComments
-               //    id
-               //    images
-               //    text
-               //    title
+               // blogId, hasComments, id, images, text, title
                // for use by EditBlog
                store.dispatch(saveBlogData(res))
             }
@@ -64,7 +50,6 @@ class ShowBlog extends Component {
       const { blog, hasComments } = store.getState()
       var { addedByUsername, date, images, text, title } = blog
 
-
       if (!images) { images = [] }
 
       var imagesToDisplay = []
@@ -77,14 +62,11 @@ class ShowBlog extends Component {
 
       return (
          <div className="ShowBlog-main-container">
-
             <div className="ShowBlog-header">
                <h1>{title}</h1>
                <span><LinkButton name="All Blogs" newPath={"/blog/main"} /></span>
             </div>
-
             <div className="ShowBlog-blog-container">
-
                <div className="ShowBlog-div">
                   <Mininavbar />
                   <div>
