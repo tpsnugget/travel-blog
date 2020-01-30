@@ -5,10 +5,30 @@ export function addImage(e){
    }
 }
 
+export function addCommentToCommentArray(res){
+   console.log("addCommentToCommentArray action creator res is", res)
+   return {
+      type: "ADD_COMMENT_TO_COMMENT_ARRAY",
+      commentArray: res
+   }
+}
+
 export function blogUpdated(BOOL){
    return {
       type: "BLOG_UPDATED",
       blogUpdated: BOOL
+   }
+}
+
+export function clearBlogData(){
+   return {
+      type: "CLEAR_BLOG_DATA"
+   }
+}
+
+export function clearSignupInfo(){
+   return {
+      type: "CLEAR_SIGNUP_INFO"
    }
 }
 
@@ -91,6 +111,15 @@ export function isLoggedIn(BOOL){
    }
 }
 
+export function loggedInData(id, token, username){
+   return {
+      type: "LOGGED_IN_DATA",
+      id: id,
+      token: token,
+      username: username
+   }
+}
+
 export function loggedInUsername(username){
    return {
       type: "LOGGED_IN_USERNAME",
@@ -118,17 +147,17 @@ export function resetBlogData(){
    }
 }
 
-export function saveBlogId(id){
-   return {
-      type: "SAVE_BLOG_ID",
-      blogId: id
-   }
-}
-
 export function saveABlog(blog){
    return {
       type: "SAVE_A_BLOG",
       blog: blog
+   }
+}
+
+export function saveBlogId(id){
+   return {
+      type: "SAVE_BLOG_ID",
+      blogId: id
    }
 }
 

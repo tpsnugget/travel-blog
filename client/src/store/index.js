@@ -17,7 +17,7 @@ const initialState = {
    goodDelete: false,
    goodSignup: false,
    hasComments: false,
-   hasProfile: true,
+   hasProfile: false,
    id: "",
    image: "",
    images: [],

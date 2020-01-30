@@ -1,7 +1,7 @@
 import React from "react"
+import "./LinkButton.css"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
-import "./LinkButton.css"
 
 export const LinkButton = ({ newPath, buttonLabel, name, chosenId }) => {
 

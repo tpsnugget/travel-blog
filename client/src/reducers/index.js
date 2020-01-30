@@ -8,10 +8,38 @@ export default (state, action) => {
          images: [action.images]
       }
 
+      case "ADD_COMMENT_TO_COMMENT_ARRAY":
+      console.log("addCommentToCommentArray reducer res is", action.commentArray)
+      return {
+         ...state,
+         commentArray: [...state.commentArray, action.commentArray],
+         commentText: ""
+      }
+
       case "BLOG_UPDATED":
       return {
          ...state,
          blogUpdated: action.blogUpdated
+      }
+
+      case "CLEAR_BLOG_DATA":
+      return {
+         ...state,
+         blogId: "",
+         hasComments: "",
+         images: "",
+         text: "",
+         title: "",
+      }
+
+      case "CLEAR_SIGNUP_INFO":
+      return {
+         ...state,
+         goodSignup: true,
+         email: "",
+         msg: "",
+         snackBarGreenOpen: false,
+         username: ""
       }
 
       case "COMMENT_ADDED":
@@ -42,6 +70,7 @@ export default (state, action) => {
       // console.log("HANDLE_COMMENT Reducer action.commentText is", action.commentText)
       return {
          ...state,
+         commentAdded: true,
          commentArray: [...state.commentArray, action.commentText],
          commentText: ""
       }
@@ -85,6 +114,18 @@ export default (state, action) => {
          ...state,
          isLoggedIn: action.isLoggedIn
       }
+
+      case "LOGGED_IN_DATA":
+      return {
+         ...state,
+         hasProfile: true,
+         id: action.id,
+         isLoggedIn: true,
+         msg: "",
+         snackBarGreenOpen: false,
+         token: action.token,
+         username: action.username
+      }
       
       case "LOGGED_IN_USERNAME":
       return {
@@ -118,12 +159,6 @@ export default (state, action) => {
          title: "",
       }
 
-      case "SAVE_BLOG_ID":
-      return {
-         ...state,
-         blogId: action.blogId
-      }
-
       case "SAVE_A_BLOG":
       return {
          ...state,
@@ -138,6 +173,12 @@ export default (state, action) => {
          images: action.images,
          text: action.text,
          title: action.title,
+      }
+
+      case "SAVE_BLOG_ID":
+      return {
+         ...state,
+         blogId: action.blogId
       }
 
       case "SAVE_BLOGS":

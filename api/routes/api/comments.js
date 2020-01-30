@@ -19,7 +19,7 @@ router.post("/", auth, async (req, res) => {
       })
    
       const newComment = await comment.save()
-   
+      console.log("comment api newComment is", newComment)
       res.json(newComment)
    } catch(err){
       console.log("comment api err is", err)
