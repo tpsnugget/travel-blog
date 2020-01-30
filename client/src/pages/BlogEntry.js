@@ -1,8 +1,8 @@
 import React, { Component } from "react"
+import "../css/BlogEntry.css"
 import { store } from "../store"
 import { saveBlogs } from "../actions"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
-import "../css/BlogEntry.css"
 
 class BlogEntry extends Component {
 
@@ -16,29 +16,16 @@ class BlogEntry extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
-               // console.log("All Blogs res is ", res)
                store.dispatch(saveBlogs(res))
-               // store.dispatch(saveToken(res.token))
-               // store.dispatch(loggedInName(res.name))
-               // store.dispatch(hasProfile(res.hasProfile))
-               // store.dispatch(id(res.id))
-               // store.dispatch(isLoggedIn(true))
-               // store.dispatch(needToSignup(false))
             }
          })
    }
-
-   // handleClick = (e) => {
-   //    console.log("BlogEntry Component handleClick getting ready to saveBlogId", e.target)
-   //    store.dispatch(saveBlogId(e.target.id))
-   // }
 
    render() {
 
       const { blogs } = store.getState()
 
       const blogTitles = blogs.map(blog => {
-         // console.log(blog)
          return (
             <LinkButton
                className="BlogEntry-linkbutton"
@@ -50,6 +37,7 @@ class BlogEntry extends Component {
                {blog.title}
             </LinkButton>
             )})
+            
       return (
          <div className="BlogEntry-main-container">
             <h1 className="BlogEntry-h1">Travel Blogs</h1>

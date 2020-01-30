@@ -1,14 +1,15 @@
 import React, { Component } from "react"
-import { store } from "../store"
-import { saveABlog } from "../actions"
 import Navbar from "./Navbar"
-import Mininavbar from "./Mininavbar"
+import { store } from "../store"
 import BlogEntry from "./BlogEntry"
+import Mininavbar from "./Mininavbar"
+import { saveABlog } from "../actions"
 
 class MainBlogPage extends Component{
 
-   // This writes over any previously selected blog so the Mininavbar resets properly
    componentDidMount(){
+      // This writes over any previously selected blog 
+      // so the Mininavbar resets properly
       store.dispatch(saveABlog(""))
    }
 

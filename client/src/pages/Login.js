@@ -1,20 +1,19 @@
 import React, { Component } from "react"
+import "../css/Login.css"
 import { store } from "../store"
-// import bcrypt from "bcryptjs"
 import { Redirect } from "react-router-dom"
-import {
-   handleChange, hasProfile, id, isLoggedIn, loggedInUsername, saveToken,
-   snackBarGreenOpen, snackBarRedOpen
-} from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import { InputText } from "../Atoms/InputText/InputText"
 import { SnackbarRed } from "../Atoms/SnackbarRed/SnackbarRed"
 import { SnackbarGreen } from "../Atoms/SnackbarGreen/SnackbarGreen"
-import "../css/Login.css"
+import {
+   handleChange, loggedInData, snackBarGreenOpen, snackBarRedOpen } from "../actions"
 
 var password = ""
 // const saltRounds = 10
+
+console.log("Login Component, outside the class")
 
 class Login extends Component {
 
@@ -29,17 +28,10 @@ class Login extends Component {
    handleSubmit = (e) => {
       e.preventDefault()
 
+      console.log("Login Component, in handleSubmit()")
+
       const { email } = store.getState()
 
-      // var salt = bcrypt.genSaltSync(saltRounds)
-      // var hash = bcrypt.hashSync(password, salt)
-      // console.log("Login Component hash is", hash)
-
-      // const url = `http://localhost:9000/api/auth?email=${email}&password=${password}`
-
-      // fetch(url, {
-      //    method: "GET"
-      // })
       fetch("http://localhost:9000/api/auth", {
          method: "POST",
          headers: {
@@ -61,21 +53,27 @@ class Login extends Component {
                console.log(res.text)
             }
             else {
-               // console.log("Login Component res is ", res)
                store.dispatch(snackBarGreenOpen(true, `Good Login, ${res.username}!`))
                setTimeout(() => {
-                  store.dispatch(snackBarGreenOpen(false, ""))
-                  store.dispatch(saveToken(res.token))
-                  store.dispatch(loggedInUsername(res.username))
-                  store.dispatch(hasProfile(res.hasProfile))
-                  store.dispatch(id(res.id))
-                  store.dispatch(isLoggedIn(true))
+                  // store.dispatch(snackBarGreenOpen(false, ""))
+
+                  // This replaces the 1 dispatch above and the 5 dispatches below and reduces the number
+                  // of renders after handleSubmit from 7 renders to 2
+                  store.dispatch(loggedInData(res.id, res.token, res.username))
+
+                  // store.dispatch(saveToken(res.token))
+                  // store.dispatch(loggedInUsername(res.username))
+                  // store.dispatch(hasProfile(res.hasProfile))
+                  // store.dispatch(id(res.id))
+                  // store.dispatch(isLoggedIn(true))
                }, 3000)
             }
          })
    }
 
    render() {
+
+      // console.log("Login Component, in render()")
 
       const { hasProfile, isLoggedIn, msg, snackBarGreenOpen, snackBarRedOpen } = store.getState()
 
@@ -86,7 +84,6 @@ class Login extends Component {
             <div className="Login-main-container">
                <div
                   className="Login-button-container"
-               // onClick={this.handleClick}
                >
                   <div className="Login-button-div">
                      <LinkButton

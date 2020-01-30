@@ -1,19 +1,18 @@
 import React, { Component } from "react"
+import "../css/AddComment.css"
 import { store } from "../store"
-import { commentAdded, handleChange, handleComment, hasCommentsUpdate } from "../actions"
 import { Button } from "../Atoms/Button/Button"
 import { TextArea } from "../Atoms/TextArea/TextArea"
-import "../css/AddComment.css"
+import { addCommentToCommentArray, commentAdded, handleChange, hasCommentsUpdate } from "../actions"
 
 class AddComment extends Component {
 
-   handleChange = (e) => {
-      store.dispatch(handleChange(e))
+   componentWillUnmount(){
+      store.dispatch(commentAdded(false))
    }
 
-   handleComment = () => {
-      const { commentText } = store.getState()
-      store.dispatch(handleComment(commentText))
+   handleChange = (e) => {
+      store.dispatch(handleChange(e))
    }
 
    handleSubmit = (e) => {
@@ -45,8 +44,10 @@ class AddComment extends Component {
             if (res.errors) {
                console.error("Comment Component 2nd .this errors are", res.errors)
             } else {
-               // console.log("Comment Component 2nd .this res", res)
-
+               console.log("Comment Component 2nd .this res", res)
+               store.dispatch(addCommentToCommentArray(res))
+               const { commentArray } = store.getState()
+               console.log("AddComment Component commentArray is", commentArray)
                // If there are no comments yet we now need to update this
                //  particular blog in the DB, hasComments: true
                if (!hasComments) {
@@ -63,18 +64,17 @@ class AddComment extends Component {
                      },
                      body: JSON.stringify({ _id: blogId, hasComments: true, images: images, text: text, title: title })
                   })
-                     .then( res => res.json() )
+                     .then( res => { return res.json() })
                      .then( res => {
                         if(res.msg){
                            console.error("Comment Component UPDATE ONE BLOG error", res.msg)
                         } else {
-
+                           
                         }
                      })
                   // UPDATE ONE BLOG ===========================================
                   // ===========================================================
                }
-               store.dispatch(handleComment(commentText))
             }
             // store.dispatch(commentAdded(true))
             // store.dispatch(commentAdded(false))

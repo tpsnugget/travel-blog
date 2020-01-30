@@ -6,22 +6,22 @@ import Mininavbar from "./Mininavbar"
 import AddComment from "./AddComment"
 import ShowComment from "./ShowComment"
 import { LinkButton } from "../Atoms/LinkButton/LinkButton"
+import { saveABlog, saveBlogData, clearBlogData } from "../actions"
 import { ImageThumbnail } from "../Atoms/ImageThumbnail/ImageThumbnail"
-import { handleChange, handlePhoto, saveABlog, saveBlogData } from "../actions"
 
 
 class ShowBlog extends Component {
 
    componentDidMount() {
 
-      const { blogId } = store.getState()
+      // const { blogId } = store.getState()
 
-      if (this.props.location.state === undefined) {
-         var id = blogId
-      }
-      else {
+      // if (this.props.location.state === undefined) {
+      //    var id = blogId
+      // }
+      // else {
          var { id } = this.props.location.state
-      }
+      // }
 
       // =======================================================================
       // Get ONE BLOG ==========================================================
@@ -36,40 +36,34 @@ class ShowBlog extends Component {
                console.log("There were", res.errors.length, "errors returned")
                console.log("This error was returned from the server: ", res.errors[0].msg)
             } else {
+               // This saves into blog {} in the store
                store.dispatch(saveABlog(res))
-               // This saves:
+
+
+               // This saves into individual key: value pairs in the store:
                //    blogId
                //    hasComments
                //    id
                //    images
                //    text
                //    title
-               // in the store for use by EditBlog
+               // for use by EditBlog
                store.dispatch(saveBlogData(res))
             }
          })
       // Get ONE BLOG ==========================================================
       // =======================================================================
-
    }
 
-   handlePhoto = (e) => {
-      e.preventDefault()
-      const { image } = store.getState()
-      // console.log("ShowBlog Component image", image)
-      store.dispatch(handlePhoto(image))
-   }
-
-   handleChange = (e) => {
-      store.dispatch(handleChange(e))
+   componentWillUnmount(){
+      store.dispatch(clearBlogData())
    }
 
    render() {
 
-      const { blog, commentArray, hasComments } = store.getState()
+      const { blog, hasComments } = store.getState()
       var { addedByUsername, date, images, text, title } = blog
 
-      // console.log("ShowBlog Component, this blog has comments", hasComments)
 
       if (!images) { images = [] }
 
