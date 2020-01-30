@@ -52,7 +52,8 @@ class ShowComment extends Component {
 
    render() {
 
-      const { commentArray } = store.getState()
+      const { commentArray, id } = store.getState()
+
 
       const comments = commentArray.map(comment => {
          return (
@@ -67,9 +68,10 @@ class ShowComment extends Component {
                         </Moment></span>
                   </p>
                </div>
-               <div id={comment._id} onClick={this.handleDeleteComment}>
+               { comment.addedById === id ?
+                <div id={comment._id} onClick={this.handleDeleteComment}>
                   ⌧
-               </div>
+                </div> : null }
             </div>
          )
       })

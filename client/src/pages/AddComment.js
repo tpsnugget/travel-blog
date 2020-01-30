@@ -21,11 +21,6 @@ class AddComment extends Component {
       const { blogId, commentText, hasComments, id, images, text, title, token,
               username } = store.getState()
 
-      // console.log("Comment Component addedById is", id)
-      // console.log("Comment Component addedByUsername is", username)
-      // console.log("Comment Component blogId is", blogId)
-      // console.log("Comment Component commentText is", commentText)
-
       // =======================================================================
       // POST a NEW COMMENT ====================================================
       fetch("http://localhost:9000/api/comments", {
@@ -44,10 +39,8 @@ class AddComment extends Component {
             if (res.errors) {
                console.error("Comment Component 2nd .this errors are", res.errors)
             } else {
-               console.log("Comment Component 2nd .this res", res)
                store.dispatch(addCommentToCommentArray(res))
-               const { commentArray } = store.getState()
-               console.log("AddComment Component commentArray is", commentArray)
+
                // If there are no comments yet we now need to update this
                //  particular blog in the DB, hasComments: true
                if (!hasComments) {
@@ -76,9 +69,6 @@ class AddComment extends Component {
                   // ===========================================================
                }
             }
-            // store.dispatch(commentAdded(true))
-            // store.dispatch(commentAdded(false))
-            // console.log("Comment Component commentText is", commentText)
          })
       // POST a NEW COMMENT ====================================================
       // =======================================================================
