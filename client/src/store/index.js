@@ -26,6 +26,7 @@ const initialState = {
    msg: "",
    needToSignup: false,
    newBlogAdded: false,
+   numComments: 0,
    snackBarGreenOpen: false,
    snackBarRedOpen: false,
    text: "",
