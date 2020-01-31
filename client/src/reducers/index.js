@@ -121,6 +121,8 @@ export default (state, action) => {
          hasProfile: true,
          id: action.id,
          isLoggedIn: true,
+         lastLoggedInDate: action.lastLoggedInDate,
+         loggedInDate: action.loggedInDate,
          msg: "",
          snackBarGreenOpen: false,
          token: action.token,
@@ -131,6 +133,16 @@ export default (state, action) => {
       return {
          ...state,
          username: action.username
+      }
+
+      case "LOGOUT":
+      return {
+         ...state,
+         isLoggedIn: false,
+         lastLoggedInDate: "",
+         loggedInDate: "",
+         loggedInUsername: "",
+         token: ""
       }
 
       case "NEW_BLOG_ADDED":

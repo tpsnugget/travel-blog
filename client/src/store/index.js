@@ -23,6 +23,8 @@ const initialState = {
    images: [],
    isLoggedIn: false,
    location: "",
+   loggedInDate: "",
+   lastLoggedInDate: "",
    msg: "",
    needToSignup: false,
    newBlogAdded: false,

@@ -26,6 +26,7 @@ class BlogEntry extends Component {
       const { blogs } = store.getState()
 
       const blogTitles = blogs.map(blog => {
+
          return (
             <LinkButton
                className="BlogEntry-linkbutton"

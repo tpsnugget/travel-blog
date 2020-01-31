@@ -13,19 +13,26 @@ const UserSchema = new mongoose.Schema({
       required: true,
       unique: true
    },
-   username: {
-      type: String,
-      required: true
+   hasProfile: {
+      type: Boolean,
+      default: false
+   },
+   lastLoggedInDate: {
+      type: Date,
+      default: Date.now
+   },
+   loggedInDate: {
+      type: Date,
+      default: Date.now
    },
    password: {
       type: String,
       required: true
    },
-   hasProfile: {
-      type: Boolean,
-      default: false
+   username: {
+      type: String,
+      required: true
    }
-
 })
 
 module.exports = User = mongoose.model("user", UserSchema)

@@ -1,15 +1,30 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { store } from "../store"
-import { isLoggedIn, loggedInUsername, saveToken } from "../actions"
+import { logout } from "../actions"
 import "../css/Navbar.css"
 
 class Navbar extends Component {
 
    handleLogout = () => {
-      store.dispatch(isLoggedIn(false))
-      store.dispatch(loggedInUsername(""))
-      store.dispatch(saveToken("false"))
+
+      const { id, lastLoggedInDate, loggedInDate } = store.getState()
+      // console.log("Navbar Component lastLoggedInDate is", lastLoggedInDate)
+      // console.log("Navbar Component loggedInDate is", loggedInDate)
+
+      fetch("http://localhost:9000/api/users/lastloggedindate", {
+         method: "PUT",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({ id: id, lastLoggedInDate: lastLoggedInDate, loggedInDate: loggedInDate })
+      })
+         .then( res => res.json() )
+         .then( res => {
+            // console.log("Navbar Component res is", res)
+         })
+
+      store.dispatch(logout())
    }
 
    render() {

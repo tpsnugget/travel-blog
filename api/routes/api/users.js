@@ -10,6 +10,7 @@ const User = require("../../models/User")
 
 const saltRounds = config.get("saltRounds")
 
+// =============================================================================
 // @route   POST api/users
 // @desc    Test route
 // @access  Public access
@@ -59,33 +60,16 @@ router.post("/", [
       const newUser = await user.save()
       console.log("api users POST newUser = await user.save() is ", newUser)
 
-      // const payload = {
-      //    user: {
-      //       id: user.id
-      //    }
-      // }
-
-      // jwt.sign(
-      //    payload, 
-      //    config.get("jwtSecret"),
-      //    {expiresIn: 3600},
-      //    (err, token) => {
-      //       if(err) throw err
-      //       console.log("api user POST route token and username are ", token, username)
-      //       res.json({token: token, username: username})
-      //    })
          res.json({username: username})
    } catch(err){
       console.error(err.message)
       res.status(500).send("Server error")
    }
 })
-
+// =============================================================================
 router.put("/", async (req, res) => {
 
    const { id } = req.body
-
-   // console.log("api/user req.body.id is ", id)
 
    const userToUpdate = await User.findById({_id: id})
    userToUpdate.hasProfile = true
@@ -94,5 +78,22 @@ router.put("/", async (req, res) => {
 
    res.json(updatedUser)
 })
+// =============================================================================
+router.put("/lastloggedindate", async (req, res) => {
 
+   const { id, lastLoggedInDate, loggedInDate } = req.body
+
+   const userToUpdate = await User.findById({_id: id})
+   // console.log("api User update loggedInDate date is", loggedInDate)
+   userToUpdate.lastLoggedInDate = loggedInDate
+
+   // This now has a copy of the previous lastLoggedInDate should it ever be needed
+   userToUpdate.loggedInDate = lastLoggedInDate
+
+   const updatedUser = await userToUpdate.save({new: true})
+   // console.log("api User update updatedUser is", updatedUser)
+
+   res.json(updatedUser)
+})
+// =============================================================================
 module.exports = router

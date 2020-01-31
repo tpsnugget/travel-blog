@@ -1,21 +1,22 @@
 import React, { Component } from "react"
 import "../css/Login.css"
 import { store } from "../store"
+import moment from "moment"
 import { Redirect } from "react-router-dom"
 import { Button } from "../Atoms/Button/Button"
-import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import { InputText } from "../Atoms/InputText/InputText"
+import { LinkButton } from "../Atoms/LinkButton/LinkButton"
 import { SnackbarRed } from "../Atoms/SnackbarRed/SnackbarRed"
 import { SnackbarGreen } from "../Atoms/SnackbarGreen/SnackbarGreen"
-import {
-   handleChange, loggedInData, snackBarGreenOpen, snackBarRedOpen } from "../actions"
+import { handleChange, loggedInData, snackBarGreenOpen, snackBarRedOpen } from "../actions"
 
 var password = ""
-// const saltRounds = 10
-
-// console.log("Login Component, outside the class")
 
 class Login extends Component {
+
+   componentWillUnmount(){
+      password = ""
+   }
 
    handleChange = (e) => {
       store.dispatch(handleChange(e))
@@ -27,8 +28,6 @@ class Login extends Component {
 
    handleSubmit = (e) => {
       e.preventDefault()
-
-      console.log("Login Component, in handleSubmit()")
 
       const { email } = store.getState()
 
@@ -53,27 +52,26 @@ class Login extends Component {
                console.log(res.text)
             }
             else {
-               store.dispatch(snackBarGreenOpen(true, `Good Login, ${res.username}!`))
+               const { _id, lastLoggedInDate, loggedInDate, token, username } = res.user
+               // console.log("Login Component lastLoggedInDate is", lastLoggedInDate)
+               // console.log("Login Component loggedInDate is", loggedInDate)
+               // console.log("Login Component res.user is", res.user)
+               store.dispatch(snackBarGreenOpen(true, `Good Login, ${username}!`))
                setTimeout(() => {
-                  // store.dispatch(snackBarGreenOpen(false, ""))
-
-                  // This replaces the 1 dispatch above and the 5 dispatches below and reduces the number
-                  // of renders after handleSubmit from 7 renders to 2
-                  store.dispatch(loggedInData(res.id, res.token, res.username))
-
-                  // store.dispatch(saveToken(res.token))
-                  // store.dispatch(loggedInUsername(res.username))
-                  // store.dispatch(hasProfile(res.hasProfile))
-                  // store.dispatch(id(res.id))
-                  // store.dispatch(isLoggedIn(true))
+                  store.dispatch(loggedInData( _id, lastLoggedInDate, loggedInDate, token, username))
+               //    console.log("Login Component, your last login was",
+               //       moment(
+               //          moment(lastLoggedInDate).format("MMMM Do YYYY, h:mm:ss a"),
+               //          moment(loggedInDate).format("MMMM Do YYYY, h:mm:ss a")).fromNow())
+               //    console.log("Elapsed time",
+               //    moment(loggedInDate).format("MMMM Do YYYY, h:mm:ss a")
+               //   -moment(lastLoggedInDate).format("MMMM Do YYYY, h:mm:ss a"))
                }, 3000)
             }
          })
    }
 
    render() {
-
-      // console.log("Login Component, in render()")
 
       const { hasProfile, isLoggedIn, msg, snackBarGreenOpen, snackBarRedOpen } = store.getState()
 
