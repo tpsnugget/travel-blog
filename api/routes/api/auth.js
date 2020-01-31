@@ -14,10 +14,13 @@ const User = require("../../models/User")
 router.post("/", async (req, res) => {
    try {
       const user = await User.findOne({ "email": req.body.email })
-      const { hasProfile, id, username, password } = user
+      const { id, password } = user
+      // console.log("auth api user POSTed is", user)
       // console.log("api auth route hasProfile, id, username, password ", hasProfile, id, username, password)
       // console.log(password)
       // console.log(req.body.password)
+      user.loggedInDate = Date.now()
+      // console.log("auth api user is", user)
 
       if(bcrypt.compareSync(req.body.password, password)){
 
@@ -33,11 +36,11 @@ router.post("/", async (req, res) => {
             payload, 
             config.get("jwtSecret"),
             {expiresIn: 3600},
-            (err, token) => {
+            (err) => {
                if(err) throw err
                // console.log("api auth route JWT hasProfile, id, username, password ", hasProfile, id, username, password)
                // console.log("api auth route JWT token ", token)
-               res.json({ hasProfile, id, username, token })
+               res.json({ user })
             })
       }
       else{

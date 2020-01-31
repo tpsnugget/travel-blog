@@ -111,10 +111,12 @@ export function isLoggedIn(BOOL){
    }
 }
 
-export function loggedInData(id, token, username){
+export function loggedInData(id, lastLoggedInDate, loggedInDate, token, username){
    return {
       type: "LOGGED_IN_DATA",
       id: id,
+      lastLoggedInDate: lastLoggedInDate,
+      loggedInDate: loggedInDate,
       token: token,
       username: username
    }
@@ -124,6 +126,12 @@ export function loggedInUsername(username){
    return {
       type: "LOGGED_IN_USERNAME",
       username: username
+   }
+}
+
+export function logout(){
+   return {
+      type: "LOGOUT"
    }
 }
 
