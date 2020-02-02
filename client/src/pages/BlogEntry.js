@@ -31,6 +31,7 @@ class BlogEntry extends Component {
          const newBlog = moment(blog.date).isAfter(lastLoggedInDate)
 
          const newTitle = (newBlog ? blog.title + " - NEW BLOG POST" : blog.title)
+         const newStyle = (newBlog ? {backgroundColor: "lightgreen"} : null)
 
          return (
             <LinkButton
@@ -39,6 +40,7 @@ class BlogEntry extends Component {
                key={blog._id}
                name={newTitle}
                newPath={`/blog/show/${blog._id}`}
+               newStyle={newStyle}
             />
          )
       })
