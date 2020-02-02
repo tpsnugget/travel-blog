@@ -52,7 +52,8 @@ class Login extends Component {
                console.log(res.text)
             }
             else {
-               const { _id, lastLoggedInDate, loggedInDate, token, username } = res.user
+               const { _id, lastLoggedInDate, loggedInDate, username } = res.user
+               const token = res.token
 
                var timeSinceLastLogin = moment().from(lastLoggedInDate)
                store.dispatch(snackBarGreenOpen(true, `Good Login, ${username}, you last logged ${timeSinceLastLogin} ago!`))

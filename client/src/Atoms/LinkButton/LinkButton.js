@@ -21,7 +21,10 @@ export const LinkButton = ({ chosenId, buttonLabel, name, newPath, newStyle }) =
       name: PropTypes.string,
 
       /* path for the Link from react-router-dom */
-      newPath: PropTypes.string
+      newPath: PropTypes.string,
+
+      /* Allows for changing Link css */
+      newStyle: PropTypes.object
    }
 
    return (

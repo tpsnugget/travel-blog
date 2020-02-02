@@ -10,7 +10,7 @@ class DeleteBlog extends Component {
       const { blog, token } = store.getState()
       const { _id } = blog
 
-      // console.log("DeleteBlog Component id to delete is", _id)
+      // console.log("DeleteBlog Component id and to delete are", _id, token)
 
       const url = `http://localhost:9000/api/blogs/delete/${_id}`
 
@@ -26,7 +26,7 @@ class DeleteBlog extends Component {
             // console.log("res is ", res)
          })
          .then( json => {
-            console.log("api res.json() json is", json)
+            // console.log("DeleteBlog Component, from api res.json() json is", json)
             store.dispatch(goodDelete(true))
             store.dispatch(goodDelete(false))
             return
