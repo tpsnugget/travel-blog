@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "../css/Login.css"
-import { store } from "../store"
 import moment from "moment"
+import { store } from "../store"
 import { Redirect } from "react-router-dom"
 import { Button } from "../Atoms/Button/Button"
 import { InputText } from "../Atoms/InputText/InputText"
@@ -53,31 +53,12 @@ class Login extends Component {
             }
             else {
                const { _id, lastLoggedInDate, loggedInDate, token, username } = res.user
-               // console.log("Login Component lastLoggedInDate is", lastLoggedInDate)
-               // console.log("Login Component loggedInDate is", loggedInDate)
-               // console.log("Login Component res.user is", res.user)
-
-
-               console.log("The time now is", moment()._d)
-
-               // var timeSinceLastLogin = moment(lastLoggedInDate, "YYYYMMDD h:mm:ss").fromNow()
-               // var timeSinceLastLogin = moment(lastLoggedInDate, "YYYYMMDD").fromNow()
-               // var timeSinceLastLogin = moment(lastLoggedInDate, "MMMM Do YYYY, h:mm:ss a").fromNow()
 
                var timeSinceLastLogin = moment().from(lastLoggedInDate)
-
-               // var timeSinceLastLogin = moment(lastLoggedInDate).format("MMMM Do YYYY, h:mm:ss a")
-               // timeSinceLastLogin = moment(timeSinceLastLogin).fromNow()
                store.dispatch(snackBarGreenOpen(true, `Good Login, ${username}, you last logged ${timeSinceLastLogin} ago!`))
+
                setTimeout(() => {
                   store.dispatch(loggedInData(_id, lastLoggedInDate, loggedInDate, token, username))
-                  //    console.log("Login Component, your last login was",
-                  //       moment(
-                  //          moment(lastLoggedInDate).format("MMMM Do YYYY, h:mm:ss a"),
-                  //          moment(loggedInDate).format("MMMM Do YYYY, h:mm:ss a")).fromNow())
-                  //    console.log("Elapsed time",
-                  //    moment(loggedInDate).format("MMMM Do YYYY, h:mm:ss a")
-                  //   -moment(lastLoggedInDate).format("MMMM Do YYYY, h:mm:ss a"))
                }, 3000)
             }
          })

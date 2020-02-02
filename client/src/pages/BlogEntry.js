@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import moment from "moment"
 import "../css/BlogEntry.css"
 import { store } from "../store"
 import { saveBlogs } from "../actions"
@@ -23,22 +24,25 @@ class BlogEntry extends Component {
 
    render() {
 
-      const { blogs } = store.getState()
+      const { blogs, lastLoggedInDate } = store.getState()
 
       const blogTitles = blogs.map(blog => {
+
+         const newBlog = moment(blog.date).isAfter(lastLoggedInDate)
+
+         const newTitle = (newBlog ? blog.title + " - NEW BLOG POST" : blog.title)
 
          return (
             <LinkButton
                className="BlogEntry-linkbutton"
                chosenId={blog._id}
                key={blog._id}
-               name={blog.title}
+               name={newTitle}
                newPath={`/blog/show/${blog._id}`}
-            >
-               {blog.title}
-            </LinkButton>
-            )})
-            
+            />
+         )
+      })
+
       return (
          <div className="BlogEntry-main-container">
             <h1 className="BlogEntry-h1">Travel Blogs</h1>
