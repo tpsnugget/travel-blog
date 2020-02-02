@@ -3,7 +3,7 @@ import "./LinkButton.css"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 
-export const LinkButton = ({ newPath, buttonLabel, name, chosenId }) => {
+export const LinkButton = ({ chosenId, buttonLabel, name, newPath, newStyle }) => {
 
    LinkButton.defaultProps = {
       chosenId: ""
@@ -35,6 +35,7 @@ export const LinkButton = ({ newPath, buttonLabel, name, chosenId }) => {
                }
             }}
             className="LinkButton-link-new"
+            style={newStyle}
          >
             {buttonLabel} {name}
          </Link>
