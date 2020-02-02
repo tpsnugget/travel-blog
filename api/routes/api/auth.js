@@ -36,11 +36,11 @@ router.post("/", async (req, res) => {
             payload, 
             config.get("jwtSecret"),
             {expiresIn: 3600},
-            (err) => {
+            (err, token) => {
                if(err) throw err
                // console.log("api auth route JWT hasProfile, id, username, password ", hasProfile, id, username, password)
                // console.log("api auth route JWT token ", token)
-               res.json({ user })
+               res.json({ user, token })
             })
       }
       else{

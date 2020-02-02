@@ -13,7 +13,15 @@ class ShowBlog extends Component {
 
    componentDidMount() {
 
+      const { blogId } = store.getState()
+      // Do not remove this. Will cause Add New Blog to cause a crash even though
+      // blog gets added
+      if (this.props.location.state === undefined) {
+         var id = blogId
+      }
+      else {
          var { id } = this.props.location.state
+      }
 
       // =======================================================================
       // Get ONE BLOG ==========================================================
