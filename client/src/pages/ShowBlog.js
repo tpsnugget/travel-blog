@@ -49,9 +49,9 @@ class ShowBlog extends Component {
       // =======================================================================
    }
 
-   componentWillUnmount(){
-      store.dispatch(clearBlogData())
-   }
+   // componentWillUnmount(){
+   //    store.dispatch(clearBlogData())
+   // }
 
    render() {
 
